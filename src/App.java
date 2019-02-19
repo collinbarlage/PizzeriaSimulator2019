@@ -28,8 +28,8 @@ public class App extends JFrame {
         Game game = new Game();
         GameLoop loop = new GameLoop(game);
 
-        int canvasWidth = Game.SQUARE_SIZE * Game.BOARD_COLUMNS;
-        int canvasHeight = Game.SQUARE_SIZE * Game.BOARD_ROWS;
+        int canvasWidth = 1200;
+        int canvasHeight = 675;
         loop.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
 
         addKeyListener(new InputManager());
@@ -66,7 +66,9 @@ public class App extends JFrame {
 
         private GameLoop(Game game) {
             this.game = game;
-            game.addGameObject(new GameObject(0, 0, "/images/homer.gif"));
+            game.addGameObject(new GameObject(50, 50, "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
+            game.addGameObject(new GameObject(100, 100, "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
+            game.addGameObject(new GameObject(150, 150, "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
 
         }
 

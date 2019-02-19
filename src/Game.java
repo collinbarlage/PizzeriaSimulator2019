@@ -11,10 +11,6 @@ import java.util.Vector;
  * immediately change its direction to left because it would run into itself.
  */
 class Game  {
-    static final int BOARD_COLUMNS   = 40;
-    static final int BOARD_ROWS      = 20;
-    static final int SQUARE_SIZE     = 30;
-
     static Color backgroundColor  = new Color(53, 53, 53);
 
     private Vector<GameObject> gameObjects = new Vector<>();
@@ -47,10 +43,6 @@ class Game  {
     }
 
     private void paintObjects (Graphics2D g) {
-        int x = 10 * SQUARE_SIZE;
-        int y = 10 * SQUARE_SIZE;
-        int corner = SQUARE_SIZE / 3;
-
         for (GameObject obj : gameObjects)
         {
             obj.draw(g);

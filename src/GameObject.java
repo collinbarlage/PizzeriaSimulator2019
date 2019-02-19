@@ -1,5 +1,7 @@
-import java.awt.*;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.awt.Graphics;
 
 /**
  * Represents a square on the board. Each GameObject has an Entity. An Entity
@@ -10,15 +12,23 @@ class GameObject {
 
     private int x;
     private int y;
-    private GameImage image;
+    private BufferedImage image;
 
-    public GameObject (int x, int y, String file) {
+
+    public GameObject (int i, int j, String file) {
         System.out.println(file);
-        image = new GameImage(new File("C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif")); // load file
+        File source = new File(file);
+        x = i;
+        y = j;
+        try {
+            image = ImageIO.read(source);
+        } catch (IOException e) {
+            System.out.println("Image could not be read "+ source);
+        }
     }
 
     public void draw(Graphics g) {
-        image.paint(g);
+        g.drawImage(image, x, y, null);
     }
 
     public int getX() {
