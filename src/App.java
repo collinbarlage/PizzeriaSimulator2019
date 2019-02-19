@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 /**
  * PIZZERIA SIMULATOR 2019
@@ -9,10 +10,13 @@ import java.awt.event.*;
  */
 public class App extends JFrame {
 
+    public static String PIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pizza.png";
+
+
     private GameLoop loop;
     private JPanel gamePanel;
 
-    boolean running = false;
+    private boolean running = false;
 
     private App() {
         InputManager inputManager = new InputManager();
@@ -93,7 +97,7 @@ public class App extends JFrame {
             double elapsedTime = 0.0;
             double FPS = 15.0;
 
-            // Game loop.
+            // Game loop
             while (true) {
                 long now = System.nanoTime();
                 elapsedTime += ((now - lastTime) / 1_000_000_000.0) * FPS;
@@ -122,20 +126,23 @@ public class App extends JFrame {
         }
     }
 
-
+    // Input Manager
     private class InputManager implements MouseListener {
-        public void mouseClicked(MouseEvent event) {
+        public void mousePressed(MouseEvent event) {
             if(!running) {
                 running = true;
                 startGame(loop);
             }
-            System.out.println("clicked at  "+ event.getX() + ", "+ event.getY());
+            System.out.println("mousePressed at  "+ event.getX() + ", "+ event.getY());
+            loop.click(event.getX(), event.getY());
+
+        }
+
+        public void mouseReleased(MouseEvent event) {
             loop.click(event.getX(), event.getY());
         }
 
-        public void mousePressed(MouseEvent event) {
-        }
-        public void mouseReleased(MouseEvent event) {
+        public void mouseClicked(MouseEvent event) {
         }
         public void mouseEntered(MouseEvent event) {
         }
@@ -144,6 +151,7 @@ public class App extends JFrame {
     }
 
 
+    // Menu File
     private JMenuBar createMenuBar() {
         JMenuBar menuBar;
         JMenu menu, submenu;

@@ -3,27 +3,30 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.awt.Graphics;
 
-class GameObject {
+abstract class GameObject {
 
+    public boolean active;
     public boolean clickable;
 
-    private int x;
-    private int y;
-    private int w;
-    private int h;
-    private BufferedImage image;
+    protected int x, y, w, h;
+    protected BufferedImage image;
 
+    public GameObject () {
+    }
 
-    public GameObject (int i, int j, String file) {
+    protected void init(int i, int j, String file) {
         System.out.println(file);
         File source = new File(file);
         x = i;
         y = j;
-        System.out.println(x+", "+y);
+        clickable = true;
+        active = false;
         try {
             image = ImageIO.read(source);
+            w = image.getWidth();
+            h = image.getHeight();
         } catch (IOException e) {
-            System.out.println("Image could not be read "+ source);
+            System.out.println("Image could not be read " + source);
         }
     }
 
@@ -31,16 +34,14 @@ class GameObject {
         g.drawImage(image, x+5, y+5, null);
     }
 
-    public void click(int i, int j) {
-
+    public void click(int i, int j, Game game) {
+        if (clickable && i < x + w && i > x && j < y + h && j > y) {
+            active = true;
+            action(game);
+        }
     }
 
-    public int getX() {
-        return x;
+    private  void action(Game game) {
+        //abstract
     }
-
-    public int getY() {
-        return y;
-    }
-
 }

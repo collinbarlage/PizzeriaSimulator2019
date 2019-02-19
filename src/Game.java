@@ -12,14 +12,19 @@ class Game  {
         update();
 
         //TODO: Add start game picture
-        addGameObject(new GameObject(0, 0, "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
+        addGameObject(new Pizza(10, 10));
     }
 
     void update () {
     }
 
     void click (int x, int y) {
-        gameObjects.add(new GameObject(x,y,"C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
+        //gameObjects.add(new GameObject(x,y,"C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
+        for (GameObject obj : gameObjects)
+        {
+            obj.active = false;
+            obj.click(x, y, this);
+        }
     }
 
 
@@ -45,7 +50,6 @@ class Game  {
         {
             obj.draw(g);
         }
-
     }
 
     public void addGameObject(GameObject obj) {
