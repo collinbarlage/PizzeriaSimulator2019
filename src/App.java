@@ -17,7 +17,9 @@ public class App extends JFrame {
     }
 
     public static void main(String[] args) {
+
         SwingUtilities.invokeLater(() -> new App());
+
     }
 
     private GameLoop createGameLoop () {
@@ -48,8 +50,13 @@ public class App extends JFrame {
     }
 
     private void startGame (GameLoop loop) {
+
+
+
         Thread th = new Thread(loop);
         th.start();
+
+
     }
 
     private class GameLoop extends JPanel implements Runnable {
@@ -59,6 +66,8 @@ public class App extends JFrame {
 
         private GameLoop(Game game) {
             this.game = game;
+            game.addGameObject(new GameObject(0, 0, "/images/homer.gif"));
+
         }
 
         @Override
@@ -88,6 +97,7 @@ public class App extends JFrame {
 
                 }
                 sleep();
+
                 repaint();
             }
         }
