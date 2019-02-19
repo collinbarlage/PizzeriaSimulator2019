@@ -3,11 +3,6 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import java.awt.Graphics;
 
-/**
- * Represents a square on the board. Each GameObject has an Entity. An Entity
- * is what is on the GameObject: either there is food, a piece of the snake,
- * or it is empty.
- */
 class GameObject {
 
     private int x;
@@ -28,7 +23,7 @@ class GameObject {
     }
 
     public void draw(Graphics g) {
-        g.drawImage(image, x, y, null);
+        g.drawImage(image, x+5, y+5, null);
     }
 
     public int getX() {

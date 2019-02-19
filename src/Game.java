@@ -2,14 +2,6 @@ import java.awt.*;
 import java.util.Random;
 import java.util.Vector;
 
-/**
- * Represents the environment where the Snake moves a food spawns.
- * <br/>
- * There are some special rules as to how the Snake can move. If the Snake's size
- * is 1, it can move in any direction. If the Snake's size is greater than 1, it
- * cannot move 180 degrees. Example: if the Snake is moving right, it cannot
- * immediately change its direction to left because it would run into itself.
- */
 class Game  {
     static Color backgroundColor  = new Color(53, 53, 53);
 

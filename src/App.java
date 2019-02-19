@@ -10,8 +10,13 @@ import java.awt.event.*;
 public class App extends JFrame {
 
     private GameLoop loop;
+    private JPanel gamePanel;
+
+    boolean isGame = false;
 
     private App() {
+        InputManager inputManager = new InputManager();
+        gamePanel.addMouseListener(inputManager);
         loop = createGameLoop();
         setWindowProperties();
     }
@@ -28,11 +33,11 @@ public class App extends JFrame {
         Game game = new Game();
         GameLoop loop = new GameLoop(game);
 
-        int canvasWidth = 1200;
-        int canvasHeight = 675;
+        int canvasWidth = 1210;
+        int canvasHeight = 685;
         loop.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
 
-        addKeyListener(new InputManager());
+        //addKeyListener(new InputManager());
 
         this.setJMenuBar(createMenuBar());
         cp.add(loop);
@@ -66,10 +71,14 @@ public class App extends JFrame {
 
         private GameLoop(Game game) {
             this.game = game;
-            game.addGameObject(new GameObject(50, 50, "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
-            game.addGameObject(new GameObject(100, 100, "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
-            game.addGameObject(new GameObject(150, 150, "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
+            gamePanel.setOpaque(false);
+            this.add(gamePanel);
+            game.addGameObject(new GameObject(0, 0, "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
 
+        }
+
+        public void add(GameObject obj) {
+            game.addGameObject(obj);
         }
 
         @Override
@@ -87,7 +96,6 @@ public class App extends JFrame {
 
             // Game loop.
             while (true) {
-
                 long now = System.nanoTime();
                 elapsedTime += ((now - lastTime) / 1_000_000_000.0) * FPS;
                 lastTime = System.nanoTime();
@@ -99,7 +107,6 @@ public class App extends JFrame {
 
                 }
                 sleep();
-
                 repaint();
             }
         }
@@ -116,47 +123,29 @@ public class App extends JFrame {
         }
     }
 
-    private class InputManager extends KeyAdapter {
 
-        @Override
-        public void keyPressed(KeyEvent keyEvent) {
-
-            if (!loop.running && keyEvent.getKeyCode() != KeyEvent.VK_F1 && keyEvent.getKeyCode() != KeyEvent.VK_F2 && keyEvent.getKeyCode() != KeyEvent.VK_F3 && keyEvent.getKeyCode() != KeyEvent.VK_F4 && keyEvent.getKeyCode() != KeyEvent.VK_F5) {
+    private class InputManager implements MouseListener {
+        public void mouseClicked(MouseEvent event) {
+            if(!isGame) {
+                isGame = true;
                 startGame(loop);
-                loop.running = true;
             }
-
-            if (keyEvent.getKeyCode() == KeyEvent.VK_LEFT) {
-                //loop.game.directionLeft();
-            } else if (keyEvent.getKeyCode() == KeyEvent.VK_RIGHT) {
-                //loop.game.directionRight();
-            } else if (keyEvent.getKeyCode() == KeyEvent.VK_UP) {
-                //loop.game.directionUp();
-            } else if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN) {
-                //loop.game.directionDown();
-            }
-
-            if (keyEvent.getKeyCode() == KeyEvent.VK_F1) {
-                repaint();
-            }
-            else if (keyEvent.getKeyCode() == KeyEvent.VK_F2) {
-                repaint();
-            }
-            else if (keyEvent.getKeyCode() == KeyEvent.VK_F3) {
-                repaint();
-            }
-            else if (keyEvent.getKeyCode() == KeyEvent.VK_F4) {
-                repaint();
-            }
-            else if (keyEvent.getKeyCode() == KeyEvent.VK_F5) {
-                repaint();
-            }
+            System.out.println("clicked at  "+ event.getX() + ", "+ event.getY());
+            loop.add(new GameObject(event.getX(), event.getY(), "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
         }
 
+        public void mousePressed(MouseEvent event) {
+        }
+        public void mouseReleased(MouseEvent event) {
+        }
+        public void mouseEntered(MouseEvent event) {
+        }
+        public void mouseExited(MouseEvent event) {
+        }
     }
 
 
-    public JMenuBar createMenuBar() {
+    private JMenuBar createMenuBar() {
         JMenuBar menuBar;
         JMenu menu, submenu;
         JMenuItem menuItem;
@@ -172,12 +161,16 @@ public class App extends JFrame {
         menuBar.add(menu);
 
         //a group of JMenuItems
-        menuItem = new JMenuItem("Save",
+        menuItem = new JMenuItem("New Game",
                 KeyEvent.VK_T);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_1, ActionEvent.ALT_MASK));
         menu.add(menuItem);
+        menu.addSeparator();
 
+        menuItem = new JMenuItem("Save");
+        menuItem.setMnemonic(KeyEvent.VK_B);
+        menu.add(menuItem);
         menuItem = new JMenuItem("Load");
         menuItem.setMnemonic(KeyEvent.VK_B);
         menu.add(menuItem);
@@ -200,8 +193,11 @@ public class App extends JFrame {
         menu.setMnemonic(KeyEvent.VK_N);
         menuBar.add(menu);
 
+        menuItem = new JMenuItem("Tutorial");
+        menuItem.setMnemonic(KeyEvent.VK_B);
+        menu.add(menuItem);
+
         return menuBar;
     }
-
 
 }
