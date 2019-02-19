@@ -89,7 +89,7 @@ public class App extends JFrame {
 
                 if (elapsedTime >= 1) {
                     game.update();
-                    setTitle("Snake - Score: " + game.getScore());
+                    setTitle("Pizzeria Simulator 2019 " + game.getScore());
                     elapsedTime--;
 
                 }

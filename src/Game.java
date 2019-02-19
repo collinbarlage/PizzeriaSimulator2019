@@ -71,8 +71,8 @@ class Game  {
     }
 
     private void paintFood (Graphics2D g) {
-        int x = food.getX() * SQUARE_SIZE;
-        int y = food.getY() * SQUARE_SIZE;
+        int x = 10 * SQUARE_SIZE;
+        int y = 10 * SQUARE_SIZE;
         int corner = SQUARE_SIZE / 3;
 
         g.setColor(foodColor);
