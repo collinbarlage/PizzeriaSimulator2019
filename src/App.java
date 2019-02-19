@@ -1,13 +1,11 @@
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+import java.awt.event.*;
 
 /**
- * Runs a game of Snake.
- * Uses the arrow keys to move the Snake.
- * Click F1, F2, F3, F4 or F5 to change the color.
+ * PIZZERIA SIMULATOR 2019
+ * COLLIN BARLAGE
+ * CS 338 - WINTER 2019
  */
 public class App extends JFrame {
 
@@ -16,6 +14,10 @@ public class App extends JFrame {
     private App() {
         loop = createGameLoop();
         setWindowProperties();
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new App());
     }
 
     private GameLoop createGameLoop () {
@@ -30,6 +32,7 @@ public class App extends JFrame {
 
         addKeyListener(new InputManager());
 
+        this.setJMenuBar(createMenuBar());
         cp.add(loop);
 
         return loop;
@@ -37,7 +40,7 @@ public class App extends JFrame {
 
     private void setWindowProperties () {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Snake - Score: 0");
+        setTitle("Pizzeria Simulator 2019 ");
         setResizable(false);
         pack();
         setVisible(true);
@@ -49,9 +52,6 @@ public class App extends JFrame {
         th.start();
     }
 
-    /**
-     * Contains the game loop.
-     */
     private class GameLoop extends JPanel implements Runnable {
 
         private Game game;
@@ -64,12 +64,6 @@ public class App extends JFrame {
         @Override
         protected void paintComponent(Graphics graphics) {
             super.paintComponent(graphics);
-
-            // Ensures that it will run smoothly on Linux.
-            if (System.getProperty("os.name").equals("Linux")) {
-                Toolkit.getDefaultToolkit().sync();
-            }
-
             setBackground(Game.backgroundColor);
             game.paint(graphics);
         }
@@ -149,7 +143,53 @@ public class App extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new App());
+
+    public JMenuBar createMenuBar() {
+        JMenuBar menuBar;
+        JMenu menu, submenu;
+        JMenuItem menuItem;
+        JRadioButtonMenuItem rbMenuItem;
+        JCheckBoxMenuItem cbMenuItem;
+
+        //Create the menu bar.
+        menuBar = new JMenuBar();
+
+        //Build the first menu.
+        menu = new JMenu("File");
+        menu.setMnemonic(KeyEvent.VK_A);
+        menuBar.add(menu);
+
+        //a group of JMenuItems
+        menuItem = new JMenuItem("Save",
+                KeyEvent.VK_T);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_1, ActionEvent.ALT_MASK));
+        menu.add(menuItem);
+
+        menuItem = new JMenuItem("Load");
+        menuItem.setMnemonic(KeyEvent.VK_B);
+        menu.add(menuItem);
+
+
+        //a submenu
+        menu.addSeparator();
+        submenu = new JMenu("Preferences");
+        submenu.setMnemonic(KeyEvent.VK_S);
+
+        menuItem = new JMenuItem("Graphics");
+        submenu.add(menuItem);
+
+        menuItem = new JMenuItem("Mods");
+        submenu.add(menuItem);
+        menu.add(submenu);
+
+        //Build second menu in the menu bar.
+        menu = new JMenu("Help");
+        menu.setMnemonic(KeyEvent.VK_N);
+        menuBar.add(menu);
+
+        return menuBar;
     }
+
+
 }
