@@ -15,6 +15,10 @@ class Game  {
     void update () {
     }
 
+    void click (int x, int y) {
+        gameObjects.add(new GameObject(x,y,"C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
+    }
+
 
     private void exit () {
         System.out.println("Final Score: " + getScore());
@@ -27,7 +31,6 @@ class Game  {
 
 
     void paint (Graphics graphics) {
-
         Graphics2D g = (Graphics2D) graphics;
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
@@ -40,13 +43,9 @@ class Game  {
             obj.draw(g);
         }
 
-        //g.setColor(foodColor);
-        //g.fillRoundRect(x + 1, y + 1, SQUARE_SIZE - 2,
-                //SQUARE_SIZE - 2, corner, corner);
     }
 
     public void addGameObject(GameObject obj) {
         gameObjects.add(obj);
     }
-
 }

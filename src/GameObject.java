@@ -15,6 +15,7 @@ class GameObject {
         File source = new File(file);
         x = i;
         y = j;
+        System.out.println(x+", "+y);
         try {
             image = ImageIO.read(source);
         } catch (IOException e) {

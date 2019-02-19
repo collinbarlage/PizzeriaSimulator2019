@@ -12,7 +12,7 @@ public class App extends JFrame {
     private GameLoop loop;
     private JPanel gamePanel;
 
-    boolean isGame = false;
+    boolean running = false;
 
     private App() {
         InputManager inputManager = new InputManager();
@@ -77,8 +77,8 @@ public class App extends JFrame {
 
         }
 
-        public void add(GameObject obj) {
-            game.addGameObject(obj);
+        private void click(int x, int y) {
+            game.click(x,y);
         }
 
         @Override
@@ -126,12 +126,12 @@ public class App extends JFrame {
 
     private class InputManager implements MouseListener {
         public void mouseClicked(MouseEvent event) {
-            if(!isGame) {
-                isGame = true;
+            if(!running) {
+                running = true;
                 startGame(loop);
             }
             System.out.println("clicked at  "+ event.getX() + ", "+ event.getY());
-            loop.add(new GameObject(event.getX(), event.getY(), "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
+            loop.click(event.getX(), event.getY());
         }
 
         public void mousePressed(MouseEvent event) {
