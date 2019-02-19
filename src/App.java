@@ -73,7 +73,6 @@ public class App extends JFrame {
             this.game = game;
             gamePanel.setOpaque(false);
             this.add(gamePanel);
-            game.addGameObject(new GameObject(0, 0, "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
 
         }
 

@@ -10,6 +10,9 @@ class Game  {
 
     Game () {
         update();
+
+        //TODO: Add start game picture
+        addGameObject(new GameObject(0, 0, "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
     }
 
     void update () {

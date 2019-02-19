@@ -5,8 +5,12 @@ import java.awt.Graphics;
 
 class GameObject {
 
+    public boolean clickable;
+
     private int x;
     private int y;
+    private int w;
+    private int h;
     private BufferedImage image;
 
 
@@ -27,6 +31,10 @@ class GameObject {
         g.drawImage(image, x+5, y+5, null);
     }
 
+    public void click(int i, int j) {
+
+    }
+
     public int getX() {
         return x;
     }
@@ -35,14 +43,4 @@ class GameObject {
         return y;
     }
 
-
-    //    protected static ImageIcon createImageIcon(String path) {
-//        java.net.URL imgURL = App.class.getResource(path);
-//        if (imgURL != null) {
-//            return new ImageIcon(imgURL);
-//        } else {
-//            System.err.println("Yikes Couldn't find file: " + path);
-//            return null;
-//        }
-//    }
 }
