@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 
 /**
  * PIZZERIA SIMULATOR 2019
@@ -10,7 +9,12 @@ import java.io.File;
  */
 public class App extends JFrame {
 
-    public static String PIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pizza.png";
+    public static String PIZZA = "PIZZA";
+    public static String DOUGH = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/dough.png";
+    public static String SAUCE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/sauce.png";
+    public static String CHEESE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/cheese.jpg";
+    public static String SHROOM = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/shroom.png";
+    public static String PEPPER = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pepper.png";
 
 
     private GameLoop loop;
@@ -59,13 +63,8 @@ public class App extends JFrame {
     }
 
     private void startGame (GameLoop loop) {
-
-
-
         Thread th = new Thread(loop);
         th.start();
-
-
     }
 
     private class GameLoop extends JPanel implements Runnable {

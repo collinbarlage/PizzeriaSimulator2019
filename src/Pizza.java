@@ -1,11 +1,15 @@
-import java.awt.*;
 
 public class Pizza extends GameObject {
+
     public Pizza(int i, int j) {
-        init(i, j, App.PIZZA);
+        name = App.PIZZA;
+        //TODO: update dimensions of pizza
+        init(i , j , 420, 420);
     }
 
-    public void draw(Graphics g) {
-        g.drawImage(image, x+5, y+5, null);
+    public void addTopping(String name) {
+        Sprite topping = new Sprite(name);
+        sprites.add(topping);
     }
+
 }

@@ -1,37 +1,50 @@
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.awt.Graphics;
+import java.awt.*;
+import java.util.Vector;
 
 abstract class GameObject {
 
+    protected int x, y, w, h;
     public boolean active;
     public boolean clickable;
+    String name;
 
-    protected int x, y, w, h;
-    protected BufferedImage image;
+    protected Vector<Sprite> sprites;
 
     public GameObject () {
     }
 
-    protected void init(int i, int j, String file) {
-        System.out.println(file);
-        File source = new File(file);
-        x = i;
-        y = j;
+    public void init(int i, int j, int width, int height) {
+        sprites = new Vector<>();
         clickable = true;
         active = false;
-        try {
-            image = ImageIO.read(source);
-            w = image.getWidth();
-            h = image.getHeight();
-        } catch (IOException e) {
-            System.out.println("Image could not be read " + source);
-        }
+        w = width;
+        h = height;
+        x = i;
+        y = j;
+    }
+
+    public void init(int i, int j, String s) {
+        name = s;
+        Sprite sprite = new Sprite(name);
+        this.init(i, j, sprite.getWidth(), sprite.getHeight());
+        sprites.add(sprite);
+    }
+
+    public void addSprite(String s) {
+        Sprite sprite = new Sprite(s);
+        sprites.add(sprite);
+    }
+
+    public void addSprite(String s, int sX, int sY) {
+        Sprite sprite = new Sprite(s);
+        sprite.setOffset(sX, sY);
+        sprites.add(sprite);
     }
 
     public void draw(Graphics g) {
-        g.drawImage(image, x+5, y+5, null);
+        for(Sprite s: sprites) {
+            s.draw(x, y, g);
+        }
     }
 
     public void click(int i, int j, Game game) {

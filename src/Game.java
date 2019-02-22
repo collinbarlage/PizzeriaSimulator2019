@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.Random;
 import java.util.Vector;
 
 class Game  {
@@ -12,7 +11,9 @@ class Game  {
         update();
 
         //TODO: Add start game picture
-        addGameObject(new Pizza(10, 10));
+        Pizza myPizza = new Pizza(200, 100);
+        myPizza.addTopping(App.CHEESE);
+        addGameObject(myPizza);
     }
 
     void update () {
