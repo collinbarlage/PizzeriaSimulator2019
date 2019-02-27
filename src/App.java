@@ -9,8 +9,11 @@ import java.awt.event.*;
  */
 public class App extends JFrame {
 
-    public static String BACKGROUND = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/title.png";
     public static String PIZZA = "PIZZA";
+    public static String TITLE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/title.png";
+    public static String BACKGROUND = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pizzeria.png";
+    public static String FOREGROUND = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pizzeriaforeground.png";
+    public static String CUSTOMER = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/customer.png";
     public static String DOUGH = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/dough.png";
     public static String SAUCE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/sauce.png";
     public static String CHEESE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/cheese.png";

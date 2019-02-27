@@ -18,9 +18,7 @@ class Game  {
 
     Game () {
 
-        //TODO: Add start game picture
-
-        addGameObject(new GameImage(App.BACKGROUND));
+        addGameObject(new GameImage(App.TITLE));
 
 
 
@@ -31,13 +29,16 @@ class Game  {
     public void start() {
         gameObjects.clear();
 
-        addGameObject(new Ingredient(50, 400, App.DOUGH));
-        addGameObject(new Ingredient(250, 400, App.SAUCE));
-        addGameObject(new Ingredient(450, 400, App.CHEESE));
-        addGameObject(new Ingredient(650, 400, App.SHROOM));
-        addGameObject(new Ingredient(850, 400, App.PEPPER));
+        gameObjectsBackground.add(new GameImage(App.BACKGROUND));
+        addGameObject(new GameImage(App.FOREGROUND));
 
-        tray = new Pizza(1050, 400);
+        addGameObject(new Ingredient(0, 400, App.DOUGH));
+        addGameObject(new Ingredient(136, 400, App.SAUCE));
+        addGameObject(new Ingredient(323, 400, App.CHEESE));
+        addGameObject(new Ingredient(464, 400, App.SHROOM));
+        addGameObject(new Ingredient(464, 518, App.PEPPER));
+
+        tray = new Pizza(586, 473);
         addGameObject(tray);
     }
 
