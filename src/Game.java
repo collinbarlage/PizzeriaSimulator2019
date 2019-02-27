@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.text.DecimalFormat;
-import java.util.Random;
 import java.util.Vector;
 
 class Game  {
@@ -14,12 +13,16 @@ class Game  {
     private int time = 0;
     private int timeLimit = 60*5;
 
+    public Pizza activeZa;
+
     private Pizza tray;
+    private Oven oven;
 
     Game () {
 
         addGameObject(new GameImage(App.TITLE));
 
+        oven = new Oven();
 
 
 
@@ -38,30 +41,27 @@ class Game  {
         addGameObject(new Ingredient(464, 400, App.PEPPER));
         addGameObject(new Ingredient(464, 518, App.SHROOM));
 
-        tray = new Pizza(570, 463);
-        addGameObject(tray);
+        newPizza();
 
-        Pizza oven1 = new Pizza(833, 590);
-        Pizza oven2 = new Pizza(988, 590);
-        Pizza oven3 = new Pizza(912, 515);
-        oven1.addTopping(App.DOUGHPIZZA);
-        oven2.addTopping(App.DOUGHPIZZA);
-        oven3.addTopping(App.DOUGHPIZZA);
-        addGameObject(oven1);
-        addGameObject(oven2);
-        addGameObject(oven3);
+
     }
 
     public void applyIngredient(Ingredient ingredient) {
         tray.addTopping(ingredient.name.replace(".png", "pizza.png"));
     }
 
+    public void newPizza() {
+        tray = new Pizza(570, 463);
+        addGameObject(tray);
+    }
+
     void update () {
         time++;
-
+        oven.update();
     }
 
     void click (int x, int y) {
+        if(activeZa != null && oven.click(x, y)) oven.action(this);
         for (GameObject obj : gameObjects)
         {
             obj.active = false;
@@ -89,6 +89,8 @@ class Game  {
             obj.draw(g);
         for (GameObject obj : gameObjects)
             obj.draw(g);
+
+        if(oven != null) oven.draw(g);
 
         g.setFont(new Font("sansserif", Font.PLAIN, 24));
         g.setColor(Color.LIGHT_GRAY);

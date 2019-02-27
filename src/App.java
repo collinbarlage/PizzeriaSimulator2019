@@ -10,16 +10,25 @@ import java.awt.event.*;
 public class App extends JFrame {
 
     public static String PIZZA = "PIZZA";
+    public static String OVEN = "OVEN";
+
     public static String TITLE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/title.png";
     public static String BACKGROUND = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pizzeria.png";
     public static String FOREGROUND = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pizzeriaforeground.png";
+
     public static String CUSTOMER = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/customer.png";
+
     public static String DOUGH = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/dough.png";
     public static String SAUCE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/sauce.png";
     public static String CHEESE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/cheese.png";
     public static String SHROOM = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/shroom.png";
     public static String PEPPER = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pepper.png";
+
     public static String DOUGHPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/doughpizza.png";
+    public static String COOKEDPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/cookedpizza.png";
+    public static String BURNTPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/burntpizza.png";
+    public static String ASH = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/ash.png";
+
     public static String SAUCEPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/saucepizza.png";
     public static String CHEESEPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/cheesepizza.png";
     public static String SHROOMPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/shroompizza.png";
