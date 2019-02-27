@@ -45,6 +45,10 @@ abstract class GameObject {
         for(Sprite s: sprites) {
             s.draw(x, y, g);
         }
+        if(active && name.equals(App.PIZZA)) {
+            g.setColor(Color.CYAN);
+            g.drawRoundRect(x,y,w+8,h+10,35,35);
+        }
     }
 
     public boolean click(int i, int j) {

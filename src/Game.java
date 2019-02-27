@@ -35,11 +35,21 @@ class Game  {
         addGameObject(new Ingredient(0, 400, App.DOUGH));
         addGameObject(new Ingredient(136, 400, App.SAUCE));
         addGameObject(new Ingredient(323, 400, App.CHEESE));
-        addGameObject(new Ingredient(464, 400, App.SHROOM));
-        addGameObject(new Ingredient(464, 518, App.PEPPER));
+        addGameObject(new Ingredient(464, 400, App.PEPPER));
+        addGameObject(new Ingredient(464, 518, App.SHROOM));
 
-        tray = new Pizza(586, 473);
+        tray = new Pizza(570, 463);
         addGameObject(tray);
+
+        Pizza oven1 = new Pizza(833, 590);
+        Pizza oven2 = new Pizza(988, 590);
+        Pizza oven3 = new Pizza(912, 515);
+        oven1.addTopping(App.DOUGHPIZZA);
+        oven2.addTopping(App.DOUGHPIZZA);
+        oven3.addTopping(App.DOUGHPIZZA);
+        addGameObject(oven1);
+        addGameObject(oven2);
+        addGameObject(oven3);
     }
 
     public void applyIngredient(Ingredient ingredient) {
@@ -52,10 +62,9 @@ class Game  {
     }
 
     void click (int x, int y) {
-
         for (GameObject obj : gameObjects)
         {
-            //.active = false;
+            obj.active = false;
             if(obj.click(x, y)) obj.action(this);
         }
     }
@@ -74,14 +83,6 @@ class Game  {
     }
 
     private void paintObjects (Graphics2D g) {
-        g.setFont(new Font("sansserif", Font.PLAIN, 24));
-        g.setColor(Color.LIGHT_GRAY);
-        g.drawString("Time Until Close: " + getTime(), 5, 25);
-        g.setColor(Color.GREEN);
-        DecimalFormat df = new DecimalFormat("#.00");
-        g.drawString("$" + String.format("%.02f", score), 1120, 25);
-
-
         for (GameObject obj : gameObjectsBackground)
             obj.draw(g);
         for (GameObject obj : gameObjectsMidground)
@@ -89,6 +90,12 @@ class Game  {
         for (GameObject obj : gameObjects)
             obj.draw(g);
 
+        g.setFont(new Font("sansserif", Font.PLAIN, 24));
+        g.setColor(Color.LIGHT_GRAY);
+        g.drawString("Time Until Close: " + getTime(), 5, 25);
+        g.setColor(Color.GREEN);
+        DecimalFormat df = new DecimalFormat("#.00");
+        g.drawString("$" + String.format("%.02f", score), 1120, 25);
     }
 
     public void addGameObject(GameObject obj) {

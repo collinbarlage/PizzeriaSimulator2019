@@ -3,8 +3,7 @@ public class Pizza extends GameObject {
 
     public Pizza(int i, int j) {
         name = App.PIZZA;
-        //TODO: update dimensions of pizza
-        init(i , j , 420, 420);
+        init(i , j , 130, 75);
     }
 
     public void addTopping(String name) {
