@@ -2,8 +2,20 @@
   <dictionary name="Owner">
     <words>
       <w>barlage</w>
+      <w>cheesepizza</w>
       <w>clickable</w>
+      <w>doughpizza</w>
+      <w>midground</w>
+      <w>pepperpizza</w>
+      <w>pizzacheese</w>
+      <w>pizzadough</w>
+      <w>pizzapepper</w>
+      <w>pizzasauce</w>
+      <w>pizzashroom</w>
+      <w>sansserif</w>
+      <w>saucepizza</w>
       <w>shroom</w>
+      <w>shroompizza</w>
     </words>
   </dictionary>
 </component>

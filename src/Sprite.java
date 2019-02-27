@@ -4,12 +4,14 @@ import java.io.*;
 import java.awt.Graphics;
 
 class Sprite {
+    public String name;
     private BufferedImage image;
     private int xOffset, yOffset;
 
     public Sprite(String file) {
-        System.out.println(file);
-        File source = new File(file);
+        name = file;
+        System.out.println(name);
+        File source = new File(name);
         xOffset = yOffset = 0;
         try {
             image = ImageIO.read(source);

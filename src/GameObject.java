@@ -3,10 +3,10 @@ import java.util.Vector;
 
 abstract class GameObject {
 
-    protected int x, y, w, h;
+    public int x, y, w, h;
     public boolean active;
     public boolean clickable;
-    String name;
+    public String name;
 
     protected Vector<Sprite> sprites;
 
@@ -47,14 +47,16 @@ abstract class GameObject {
         }
     }
 
-    public void click(int i, int j, Game game) {
+    public boolean click(int i, int j) {
         if (clickable && i < x + w && i > x && j < y + h && j > y) {
             active = true;
-            action(game);
+            return true;
         }
+        return  false;
     }
 
-    private  void action(Game game) {
+    public void action(Game game) {
         //abstract
+
     }
 }

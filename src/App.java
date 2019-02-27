@@ -12,9 +12,14 @@ public class App extends JFrame {
     public static String PIZZA = "PIZZA";
     public static String DOUGH = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/dough.png";
     public static String SAUCE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/sauce.png";
-    public static String CHEESE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/cheese.jpg";
+    public static String CHEESE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/cheese.png";
     public static String SHROOM = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/shroom.png";
     public static String PEPPER = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pepper.png";
+    public static String DOUGHPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/doughpizza.png";
+    public static String SAUCEPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/saucepizza.png";
+    public static String CHEESEPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/cheesepizza.png";
+    public static String SHROOMPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/shroompizza.png";
+    public static String PEPPERPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pepperpizza.png";
 
 
     private GameLoop loop;
@@ -30,9 +35,7 @@ public class App extends JFrame {
     }
 
     public static void main(String[] args) {
-
         SwingUtilities.invokeLater(() -> new App());
-
     }
 
     private GameLoop createGameLoop () {
@@ -132,7 +135,7 @@ public class App extends JFrame {
                 running = true;
                 startGame(loop);
             }
-            System.out.println("mousePressed at  "+ event.getX() + ", "+ event.getY());
+            System.out.println("mousePressed at: "+ event.getX() + ", "+ event.getY());
             loop.click(event.getX(), event.getY());
 
         }
