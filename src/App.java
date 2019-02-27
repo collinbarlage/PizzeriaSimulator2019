@@ -9,6 +9,7 @@ import java.awt.event.*;
  */
 public class App extends JFrame {
 
+    public static String BACKGROUND = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/title.png";
     public static String PIZZA = "PIZZA";
     public static String DOUGH = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/dough.png";
     public static String SAUCE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/sauce.png";
@@ -99,6 +100,8 @@ public class App extends JFrame {
             double elapsedTime = 0.0;
             double FPS = 15.0;
 
+            game.start();
+
             // Game loop
             while (true) {
                 long now = System.nanoTime();
@@ -107,7 +110,6 @@ public class App extends JFrame {
 
                 if (elapsedTime >= 1) {
                     game.update();
-                    setTitle("Pizzeria Simulator 2019 " + game.getScore());
                     elapsedTime--;
 
                 }

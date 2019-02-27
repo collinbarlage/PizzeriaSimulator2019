@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.text.DecimalFormat;
+import java.util.Random;
 import java.util.Vector;
 
 class Game  {
@@ -8,7 +10,7 @@ class Game  {
     private Vector<GameObject> gameObjectsBackground = new Vector<>();
     private Vector<GameObject> gameObjectsMidground = new Vector<>();
 
-    private int score = 0;
+    private double score = 0;
     private int time = 0;
     private int timeLimit = 60*5;
 
@@ -18,19 +20,25 @@ class Game  {
 
         //TODO: Add start game picture
 
-        //addGameObject(new Ingredient(50, 400, App.DOUGH));
-        //addGameObject(new Ingredient(50, 400, App.SAUCE));
-        addGameObject(new Ingredient(50, 400, App.CHEESE));
-        //addGameObject(new Ingredient(50, 400, App.SHROOM));
-        //addGameObject(new Ingredient(50, 400, App.PEPPER));
-
-        tray = new Pizza(500, 400);
-        addGameObject(tray);
+        addGameObject(new GameImage(App.BACKGROUND));
 
 
 
 
         update();
+    }
+
+    public void start() {
+        gameObjects.clear();
+
+        addGameObject(new Ingredient(50, 400, App.DOUGH));
+        addGameObject(new Ingredient(250, 400, App.SAUCE));
+        addGameObject(new Ingredient(450, 400, App.CHEESE));
+        addGameObject(new Ingredient(650, 400, App.SHROOM));
+        addGameObject(new Ingredient(850, 400, App.PEPPER));
+
+        tray = new Pizza(1050, 400);
+        addGameObject(tray);
     }
 
     public void applyIngredient(Ingredient ingredient) {
@@ -43,7 +51,7 @@ class Game  {
     }
 
     void click (int x, int y) {
-        //gameObjects.add(new GameObject(x,y,"C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/homer.gif"));
+
         for (GameObject obj : gameObjects)
         {
             //.active = false;
@@ -53,14 +61,9 @@ class Game  {
 
 
     private void exit () {
-        System.out.println("Final Score: " + getScore());
+        System.out.println("Final Score: " + score);
         System.exit(0);
     }
-
-    int getScore () {
-        return score;
-    }
-
 
     void paint (Graphics graphics) {
         Graphics2D g = (Graphics2D) graphics;
@@ -70,9 +73,12 @@ class Game  {
     }
 
     private void paintObjects (Graphics2D g) {
-        g.setFont(new Font("sansserif", Font.PLAIN, 50));
+        g.setFont(new Font("sansserif", Font.PLAIN, 24));
         g.setColor(Color.LIGHT_GRAY);
-        g.drawString("Time Until Close: " + getTime(), 1, 60);
+        g.drawString("Time Until Close: " + getTime(), 5, 25);
+        g.setColor(Color.GREEN);
+        DecimalFormat df = new DecimalFormat("#.00");
+        g.drawString("$" + String.format("%.02f", score), 1120, 25);
 
 
         for (GameObject obj : gameObjectsBackground)
