@@ -33,7 +33,7 @@ public class Pizza extends GameObject {
     }
 
     public void action(Game game) {
-        game.activeZa = this;
+        if(sprites.size() > 0) game.activeZa = this;
     }
 
     public void cook(double amount) {
