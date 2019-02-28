@@ -45,6 +45,8 @@ public class Customer extends GameObject {
             game.addScore(receivePizza(game.activeZa));
             game.removePizza(game.activeZa.inOven);
             game.activeZa.hide = true;
+
+
         }
     }
 

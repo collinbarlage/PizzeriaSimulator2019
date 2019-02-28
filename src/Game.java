@@ -23,7 +23,8 @@ class Game  {
 
     Game () {
 
-        addGameObject(new GameImage(App.TITLE));
+        addGameObject(new GameImage(App.FOREGROUND));
+        gameObjectsBackground.add(new GameImage(App.BACKGROUND));
 
         oven = new Oven();
 
@@ -129,7 +130,7 @@ class Game  {
 
     private void paintObjects (Graphics2D g) {
         if(objectToAdd != null) {
-            gameObjects.add(objectToAdd);
+            gameObjectsMidground.add(objectToAdd);
             objectToAdd = null;
         }
 
