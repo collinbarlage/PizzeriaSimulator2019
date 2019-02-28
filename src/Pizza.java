@@ -1,7 +1,7 @@
 
 public class Pizza extends GameObject {
 
-    public boolean isInOven = false;
+    public int inOven = -1;
     public double cookAmount = 0;
 
     public Pizza(int i, int j) {

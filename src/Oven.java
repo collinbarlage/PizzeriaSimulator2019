@@ -21,8 +21,8 @@ public class Oven extends GameObject {
     }
 
     public void action(Game game) { // add pizza to oven
-        if (getEmptySlot() >= 0 && !game.activeZa.isInOven) {
-            game.activeZa.isInOven = true;
+        if (getEmptySlot() >= 0 && game.activeZa.inOven < 0) {
+            game.activeZa.inOven = getEmptySlot();
             slots[getEmptySlot()] = game.activeZa;
             game.activeZa = null;
             game.newPizza();
@@ -44,5 +44,9 @@ public class Oven extends GameObject {
                 slots[i].draw(g);
             }
         }
+    }
+
+    public void removePizza(int pizzaIndex) {
+        slots[pizzaIndex] = null;
     }
 }

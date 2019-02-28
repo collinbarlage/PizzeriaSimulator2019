@@ -5,6 +5,7 @@ import java.util.Vector;
 class Game  {
     static Color backgroundColor  = new Color(53, 53, 53);
 
+    private GameObject objectToAdd;
     private Vector<GameObject> gameObjects = new Vector<>();
     private Vector<GameObject> gameObjectsBackground = new Vector<>();
     private Vector<GameObject> gameObjectsMidground = new Vector<>();
@@ -12,6 +13,8 @@ class Game  {
     private double score = 0;
     private int time = 0;
     private int timeLimit = 60*5;
+
+    public Customer[] customers = new Customer[4];
 
     public Pizza activeZa;
 
@@ -69,9 +72,52 @@ class Game  {
     void update () {
         time++;
         oven.update();
+
+        if(time%15 == 0) {
+            switch (time) {
+                case 3*15: generateCustomer();
+                    break;
+                case 10*15: generateCustomer();
+                    break;
+                case 15*15: generateCustomer();
+                    break;
+                case 20*15: generateCustomer();
+                    break;
+                case 24*15: generateCustomer();
+                    break;
+                case 28*15: generateCustomer();
+                    break;
+                case 33*15: generateCustomer();
+                    break;
+                case 35*15: generateCustomer();
+                    break;
+                case 40*15: generateCustomer();
+                    break;
+                case 45*15: generateCustomer();
+                    break;
+                case 50*15: generateCustomer();
+                    break;
+            }
+        }
     }
 
-    void click (int x, int y) {
+    private void generateCustomer() {
+        Vector<Integer> openSpaces = new Vector<>();
+
+        for (int i = 0; i < 4; i++) {
+            if(customers[i] == null) openSpaces.add(i);
+        }
+
+        if(openSpaces.size() > 0) {
+            int space = openSpaces.elementAt(App.getRandomInt(0, openSpaces.size()-1));
+            Customer c = new Customer(space);
+            customers[space] = c;
+            queueGameObject(c);
+        }
+    }
+
+
+    public void click (int x, int y) {
         if(activeZa != null && oven.click(x, y)) oven.action(this);
         for (GameObject obj : gameObjects)
         {
@@ -94,6 +140,11 @@ class Game  {
     }
 
     private void paintObjects (Graphics2D g) {
+        if(objectToAdd != null) {
+            gameObjects.add(objectToAdd);
+            objectToAdd = null;
+        }
+
         for (GameObject obj : gameObjectsBackground)
             obj.draw(g);
         for (GameObject obj : gameObjectsMidground)
@@ -109,6 +160,10 @@ class Game  {
         g.setColor(Color.GREEN);
         DecimalFormat df = new DecimalFormat("#.00");
         g.drawString("$" + String.format("%.02f", score), 1120, 25);
+    }
+
+    public void queueGameObject(GameObject obj) {
+        objectToAdd = obj;
     }
 
     public void addGameObject(GameObject obj) {
