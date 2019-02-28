@@ -22,6 +22,9 @@ public class Oven extends GameObject {
 
     public void action(Game game) { // add pizza to oven
         if (getEmptySlot() >= 0 && game.activeZa.inOven < 0) {
+            if(!game.activeZa.sprites.get(0).equals(App.DOUGHPIZZA)) {
+                game.activeZa.cookAmount = 1;
+            }
             game.activeZa.inOven = getEmptySlot();
             slots[getEmptySlot()] = game.activeZa;
             game.activeZa = null;
