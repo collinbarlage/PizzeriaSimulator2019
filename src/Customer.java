@@ -5,11 +5,12 @@ public class Customer extends GameObject {
 
     private int numCustomers = 5; //TODO: More peeps
 
-    private int coordinates[] = {50, 250, 450, 650, 850};
+    private int spacing = 250;
+    private int coordinates[] = {spacing*0, spacing*1, spacing*2, spacing*3};
 
     public Customer(int x) {
         int spriteIndex = App.getRandomInt(1, numCustomers);
-        init(coordinates[x], 50, App.CUSTOMER.replace(".png", spriteIndex + ".png"));
+        init(coordinates[x], 80, App.CUSTOMER.replace(".png", spriteIndex + ".png"));
     }
 
     public void action(Game game) {

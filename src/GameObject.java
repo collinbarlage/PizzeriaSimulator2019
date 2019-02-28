@@ -47,7 +47,7 @@ abstract class GameObject {
         }
         if(active && name.equals(App.PIZZA)) {
             g.setColor(Color.CYAN);
-            g.drawRoundRect(x,y,w+8,h+10,35,35);
+            g.drawRoundRect(x,y,w+8,h+10,15,15);
         }
     }
 
