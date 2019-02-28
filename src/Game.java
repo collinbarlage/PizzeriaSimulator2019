@@ -109,11 +109,13 @@ class Game  {
 
     public void click (int x, int y) {
         if(activeZa != null && oven.click(x, y)) oven.action(this);
-        for (GameObject obj : gameObjects)
-        {
-            obj.active = false;
-            if(obj.click(x, y)) obj.action(this);
-        }
+        for (GameObject obj : gameObjects) clickObject(obj, x, y);
+        for (GameObject obj : gameObjectsMidground) clickObject(obj, x, y);
+    }
+
+    private void clickObject(GameObject obj, int x, int y) {
+        obj.active = false;
+        if(obj.click(x, y)) obj.action(this);
     }
 
     private void exit () {
