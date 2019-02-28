@@ -42,29 +42,14 @@ class Game  {
         addGameObject(new Ingredient(464, 400, App.PEPPER));
         addGameObject(new Ingredient(464, 518, App.SHROOM));
 
-        Pizza p = new Pizza(40,40);
-        p.autoGenerate();
-        addGameObject(p);
-
-        Pizza p1 = new Pizza(240,40);
-        p1.autoGenerate();
-        addGameObject(p1);
-
-        Pizza p2 = new Pizza(440,40);
-        p2.autoGenerate();
-        addGameObject(p2);
-
-
-        newPizza();
-
-
+        newPizzaTray();
     }
 
     public void applyIngredient(Ingredient ingredient) {
         tray.addTopping(ingredient.name.replace(".png", "pizza.png"));
     }
 
-    public void newPizza() {
+    public void newPizzaTray() {
         tray = new Pizza(570, 463);
         addGameObject(tray);
     }
@@ -116,6 +101,10 @@ class Game  {
         }
     }
 
+    public void removePizza(int index) {
+        oven.removePizza(index);
+    }
+
 
     public void click (int x, int y) {
         if(activeZa != null && oven.click(x, y)) oven.action(this);
@@ -125,7 +114,6 @@ class Game  {
             if(obj.click(x, y)) obj.action(this);
         }
     }
-
 
     private void exit () {
         System.out.println("Final Score: " + score);
@@ -168,6 +156,10 @@ class Game  {
 
     public void addGameObject(GameObject obj) {
         gameObjects.add(obj);
+    }
+
+    public void addScore(double d) {
+        score += d;
     }
 
     private String getTime() {

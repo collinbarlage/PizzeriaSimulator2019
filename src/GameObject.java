@@ -6,6 +6,7 @@ abstract class GameObject {
     public int x, y, w, h;
     public boolean active;
     public boolean clickable;
+    public boolean hide;
     public String name;
 
     protected Vector<Sprite> sprites;
@@ -17,6 +18,7 @@ abstract class GameObject {
         sprites = new Vector<>();
         clickable = true;
         active = false;
+        hide = false;
         w = width;
         h = height;
         x = i;
@@ -43,7 +45,7 @@ abstract class GameObject {
 
     public void draw(Graphics g) {
         for(Sprite s: sprites) {
-            s.draw(x, y, g);
+            if(!hide) s.draw(x, y, g);
         }
         if(active && name.equals(App.PIZZA)) {
             g.setColor(Color.CYAN);

@@ -10,7 +10,6 @@ class Sprite {
 
     public Sprite(String file) {
         name = file;
-        System.out.println(name);
         File source = new File(name);
         xOffset = yOffset = 0;
         try {

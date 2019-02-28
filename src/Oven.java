@@ -25,7 +25,7 @@ public class Oven extends GameObject {
             game.activeZa.inOven = getEmptySlot();
             slots[getEmptySlot()] = game.activeZa;
             game.activeZa = null;
-            game.newPizza();
+            game.newPizzaTray();
         }
     }
 
@@ -47,6 +47,7 @@ public class Oven extends GameObject {
     }
 
     public void removePizza(int pizzaIndex) {
+        slots[pizzaIndex] = new Pizza(xCoordinates[pizzaIndex], yCoordinates[pizzaIndex]);
         slots[pizzaIndex] = null;
     }
 }

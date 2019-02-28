@@ -18,6 +18,7 @@ public class App extends JFrame {
     public static String FOREGROUND = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pizzeriaforeground.png";
 
     public static String CUSTOMER = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/customer.png";
+    public static String BUBBLE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/bubble.png";
 
     public static String DOUGH = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/dough.png";
     public static String SAUCE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/sauce.png";

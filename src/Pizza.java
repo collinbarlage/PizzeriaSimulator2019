@@ -3,8 +3,10 @@ public class Pizza extends GameObject {
 
     public int inOven = -1;
     public double cookAmount = 0;
+    boolean isSold;
 
     public Pizza(int i, int j) {
+        isSold = false;
         name = App.PIZZA;
         init(i , j , 130, 75);
     }
@@ -13,7 +15,6 @@ public class Pizza extends GameObject {
         for(Sprite s : sprites) {
             if(s.name.equals(name)) return; // user trying to add duplicate toppings
         }
-        System.out.println("adding topping");
         Sprite topping = new Sprite(name);
         sprites.add(topping);
     }
