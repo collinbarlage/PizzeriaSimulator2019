@@ -10,8 +10,6 @@ public class Pizza extends GameObject {
     }
 
     public void addTopping(String name) {
-        if(sprites.size() == 1 && !sprites.elementAt(0).name.equals(App.DOUGHPIZZA))
-            return; // did not start with sauce
         for(Sprite s : sprites) {
             if(s.name.equals(name)) return; // user trying to add duplicate toppings
         }
@@ -21,15 +19,27 @@ public class Pizza extends GameObject {
     }
 
     public void autoGenerate() {
-        this.addTopping(App.DOUGHPIZZA);
+        this.addTopping(App.COOKEDPIZZA);
 
-        //TODO:
-        //cheese
-        //sauce
-        //cheese + sauce
+        int r = App.getRandomInt(1,4);
+        if(r == 1) {
+            this.addTopping(App.CHEESEPIZZA);
+        } else if(r == 2) {
+            this.addTopping((App.SAUCEPIZZA));
+        } else {
+            this.addTopping((App.SAUCEPIZZA));
+            this.addTopping((App.CHEESEPIZZA));
+        }
 
-        //pep
-        //shroom
+        r = App.getRandomInt(1,4);
+        if(r == 1) {
+            this.addTopping(App.PEPPERPIZZA);
+        } else if(r == 2) {
+            this.addTopping((App.SHROOMPIZZA));
+        } else if (r == 3) {
+            this.addTopping(App.PEPPERPIZZA);
+            this.addTopping(App.SHROOMPIZZA);
+        }
     }
 
     public void action(Game game) {

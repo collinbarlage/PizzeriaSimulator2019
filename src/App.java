@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Random;
 
 /**
  * PIZZERIA SIMULATOR 2019
@@ -140,6 +141,11 @@ public class App extends JFrame {
         } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static int getRandomInt(int min, int max) {
+        Random r = new Random();
+        return r.nextInt((max - min) + 1) + min;
     }
 
     // Input Manager

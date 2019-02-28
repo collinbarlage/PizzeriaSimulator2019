@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Oven extends GameObject {
 
-    private double cookRate = .025;
+    private double cookRate = .01;
 
     private int xCoordinates[] = {833, 988, 912};
     private int yCoordinates[] = {590, 590, 515};

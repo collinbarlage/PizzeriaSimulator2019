@@ -24,8 +24,6 @@ class Game  {
 
         oven = new Oven();
 
-
-
         update();
     }
 
@@ -40,6 +38,19 @@ class Game  {
         addGameObject(new Ingredient(323, 400, App.CHEESE));
         addGameObject(new Ingredient(464, 400, App.PEPPER));
         addGameObject(new Ingredient(464, 518, App.SHROOM));
+
+        Pizza p = new Pizza(40,40);
+        p.autoGenerate();
+        addGameObject(p);
+
+        Pizza p1 = new Pizza(240,40);
+        p1.autoGenerate();
+        addGameObject(p1);
+
+        Pizza p2 = new Pizza(440,40);
+        p2.autoGenerate();
+        addGameObject(p2);
+
 
         newPizza();
 
