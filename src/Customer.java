@@ -14,19 +14,20 @@ public class Customer extends GameObject {
 
     public Customer(int space) {
         spaceIndex = space;
+        //int spriteIndex = App.getLineUp(); //TODO
         int spriteIndex = App.getRandomInt(1, numCustomers);
-        init(coordinates[space], 80, App.CUSTOMER.replace(".png", spriteIndex + ".png"));
+        init(coordinates[space], 0, App.CUSTOMER.replace(".png", spriteIndex + ".png"));
 
         bubble = new Sprite(App.BUBBLE);
 
-        desiredPizza = new Pizza(x+110,y-43);
+        desiredPizza = new Pizza(x+110,y-43+80);
         desiredPizza.autoGenerate();
     }
 
     private double receivePizza(Pizza pizza) {
         if(pizza.isSold) return 0;
 
-        //TODO:
+        //TODO: figure out $$$$$$
 
 //        for(Sprite received: pizza.sprites) {
 //        }
@@ -40,7 +41,7 @@ public class Customer extends GameObject {
                 s.draw(x, y, g);
             }
 
-            bubble.draw(x + 75, y - 60, g);
+            bubble.draw(x + 75, y +20, g);
             desiredPizza.draw(g);
         }
     }

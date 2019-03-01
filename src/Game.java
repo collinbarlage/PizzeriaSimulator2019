@@ -23,8 +23,7 @@ class Game  {
 
     Game () {
 
-        addGameObject(new GameImage(App.FOREGROUND));
-        gameObjectsBackground.add(new GameImage(App.BACKGROUND));
+        gameObjectsBackground.add(new GameImage(App.TITLE));
 
         oven = new Oven();
 
@@ -100,6 +99,13 @@ class Game  {
             customers[space] = c;
             queueGameObject(c);
         }
+    }
+
+    public String getLineUp() {
+        //TODO: no two customers at the same time
+
+        Vector<String> lineUp = new Vector<>();
+        return "blazeit";
     }
 
     public void removePizza(int index) {
