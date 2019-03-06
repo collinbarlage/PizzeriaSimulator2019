@@ -8,33 +8,34 @@ import java.util.Random;
  * COLLIN BARLAGE
  * CS 338 - WINTER 2019
  */
+
 public class App extends JFrame {
 
     public static String PIZZA = "PIZZA";
     public static String OVEN = "OVEN";
 
-    public static String TITLE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/title.png";
-    public static String BACKGROUND = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pizzeria.png";
-    public static String FOREGROUND = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pizzeriaforeground.png";
+    public static String TITLE = "./images/title.png";
+    public static String BACKGROUND = "./images/pizzeria.png";
+    public static String FOREGROUND = "./images/pizzeriaforeground.png";
 
-    public static String CUSTOMER = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/customer.png";
-    public static String BUBBLE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/bubble.png";
+    public static String CUSTOMER = "./images/customer.png";
+    public static String BUBBLE = "./images/bubble.png";
 
-    public static String DOUGH = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/dough.png";
-    public static String SAUCE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/sauce.png";
-    public static String CHEESE = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/cheese.png";
-    public static String SHROOM = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/shroom.png";
-    public static String PEPPER = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pepper.png";
+    public static String DOUGH = "./images/dough.png";
+    public static String SAUCE = "./images/sauce.png";
+    public static String CHEESE = "./images/cheese.png";
+    public static String SHROOM = "./images/shroom.png";
+    public static String PEPPER = "./images/pepper.png";
 
-    public static String DOUGHPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/doughpizza.png";
-    public static String COOKEDPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/cookedpizza.png";
-    public static String BURNTPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/burntpizza.png";
-    public static String ASH = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/ash.png";
+    public static String DOUGHPIZZA = "./images/doughpizza.png";
+    public static String COOKEDPIZZA = "./images/cookedpizza.png";
+    public static String BURNTPIZZA = "./images/burntpizza.png";
+    public static String ASH = "./images/ash.png";
 
-    public static String SAUCEPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/saucepizza.png";
-    public static String CHEESEPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/cheesepizza.png";
-    public static String SHROOMPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/shroompizza.png";
-    public static String PEPPERPIZZA = "C:/Users/Owner/Desktop/CS 338/PizzeriaSimulator2019/images/pepperpizza.png";
+    public static String SAUCEPIZZA = "./images/saucepizza.png";
+    public static String CHEESEPIZZA = "./images/cheesepizza.png";
+    public static String SHROOMPIZZA = "./images/shroompizza.png";
+    public static String PEPPERPIZZA = "./images/pepperpizza.png";
 
 
     private GameLoop loop;
@@ -43,10 +44,24 @@ public class App extends JFrame {
     private boolean running = false;
 
     private App() {
+        this.setJMenuBar(createMenuBar());
+//        JButton b = new JButton("START GAME"); TODO: figure this out
+//        b.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                startApp();
+//            }
+//        });
+//        this.add(b);
+        startApp();
+
+        setWindowProperties();
+    }
+
+    private void startApp() {
         InputManager inputManager = new InputManager();
         gamePanel.addMouseListener(inputManager);
         loop = createGameLoop();
-        setWindowProperties();
     }
 
     public static void main(String[] args) {
@@ -63,9 +78,9 @@ public class App extends JFrame {
         int canvasHeight = 685;
         loop.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
 
-        //addKeyListener(new InputManager());
+        JButton b = new JButton("START GAME");
+        this.add(b);
 
-        this.setJMenuBar(createMenuBar());
         cp.add(loop);
 
         return loop;
@@ -73,7 +88,7 @@ public class App extends JFrame {
 
     private void setWindowProperties () {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Pizzeria Simulator 2019 ");
+        setTitle("Pizzeria Simulator 2019 - Collin Barlage - CS 338");
         setResizable(false);
         pack();
         setVisible(true);
@@ -94,6 +109,8 @@ public class App extends JFrame {
             this.game = game;
             gamePanel.setOpaque(false);
             this.add(gamePanel);
+
+
 
         }
 
@@ -121,11 +138,9 @@ public class App extends JFrame {
                 long now = System.nanoTime();
                 elapsedTime += ((now - lastTime) / 1_000_000_000.0) * FPS;
                 lastTime = System.nanoTime();
-
                 if (elapsedTime >= 1) {
                     game.update();
                     elapsedTime--;
-
                 }
                 sleep();
                 repaint();
@@ -133,9 +148,6 @@ public class App extends JFrame {
         }
     }
 
-    /**
-     * Sleep for 10 milliseconds.
-     */
     private void sleep () {
         try {
             Thread.sleep(10);

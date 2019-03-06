@@ -12,9 +12,11 @@ class Game  {
 
     private double score = 0;
     private int time = 0;
-    private int timeLimit = 60*5;
+    private int timeLimit = 60*2;
 
     public Customer[] customers = new Customer[4];
+    public Vector<String> lineUp = new Vector<>();
+    private int numCustomers = 8; //TODO: More peeps
 
     public Pizza activeZa;
 
@@ -22,11 +24,9 @@ class Game  {
     private Oven oven;
 
     Game () {
-
+        shuffleCustomers();
         gameObjectsBackground.add(new GameImage(App.TITLE));
-
         oven = new Oven();
-
         update();
     }
 
@@ -58,54 +58,46 @@ class Game  {
         time++;
         oven.update();
 
-        if(time%15 == 0) {
-            switch (time) {
-                case 3*15: generateCustomer();
-                    break;
-                case 10*15: generateCustomer();
-                    break;
-                case 15*15: generateCustomer();
-                    break;
-                case 20*15: generateCustomer();
-                    break;
-                case 24*15: generateCustomer();
-                    break;
-                case 28*15: generateCustomer();
-                    break;
-                case 33*15: generateCustomer();
-                    break;
-                case 35*15: generateCustomer();
-                    break;
-                case 40*15: generateCustomer();
-                    break;
-                case 45*15: generateCustomer();
-                    break;
-                case 50*15: generateCustomer();
-                    break;
-            }
+        if(time%75 == 0) {
+            generateCustomer();
+        }
+
+        if(time == timeLimit*15) {
+            endGame();
+        }
+    }
+
+    private void shuffleCustomers() {
+        Vector<String> availableCustomers = new Vector<>();
+        for(int i=0; i<numCustomers; i++) {
+            availableCustomers.add(App.CUSTOMER.replace(".png", i+".png"));
+        }
+
+        while (availableCustomers.size() > 0) {
+            int r = App.getRandomInt(0, availableCustomers.size()-1);
+            lineUp.add(availableCustomers.elementAt(r));
+            availableCustomers.remove(r);
         }
     }
 
     private void generateCustomer() {
         Vector<Integer> openSpaces = new Vector<>();
-
         for (int i = 0; i < 4; i++) {
             if(customers[i] == null) openSpaces.add(i);
         }
-
         if(openSpaces.size() > 0) {
             int space = openSpaces.elementAt(App.getRandomInt(0, openSpaces.size()-1));
-            Customer c = new Customer(space);
+            Customer c = new Customer(space, lineUp.elementAt(0));
+            lineUp.remove(0);
             customers[space] = c;
             queueGameObject(c);
         }
     }
 
-    public String getLineUp() {
-        //TODO: no two customers at the same time
+    private void endGame() {
 
-        Vector<String> lineUp = new Vector<>();
-        return "blazeit";
+        addGameObject(new GameImage(App.TITLE)); //TODO: change to end game
+
     }
 
     public void removePizza(int index) {

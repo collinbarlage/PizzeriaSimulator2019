@@ -44,7 +44,8 @@ abstract class GameObject {
     }
 
     public void draw(Graphics g) {
-        for(Sprite s: sprites) {
+        Vector<Sprite> drawSprites = (Vector) sprites.clone();
+        for(Sprite s: drawSprites) {
             if(!hide) s.draw(x, y, g);
         }
         if(active && name.equals(App.PIZZA)) {

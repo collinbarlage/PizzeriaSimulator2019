@@ -6,6 +6,7 @@ import java.awt.Graphics;
 class Sprite {
     public String name;
     private BufferedImage image;
+    private int imageWidth, imageHeight;
     private int xOffset, yOffset;
 
     public Sprite(String file) {
@@ -14,6 +15,8 @@ class Sprite {
         xOffset = yOffset = 0;
         try {
             image = ImageIO.read(source);
+            imageWidth = image.getWidth();
+            imageHeight = image.getHeight();
         } catch (IOException e) {
             System.out.println("Image could not be read " + source);
         }
@@ -23,12 +26,10 @@ class Sprite {
         g.drawImage(image, x+5+ xOffset, y+5+yOffset, null);
     }
 
-    public int getWidth() {
-        return image.getWidth();
-    }
+    public int getWidth() { return imageWidth; }
 
     public int getHeight() {
-        return image.getHeight();
+        return imageHeight;
     }
 
     public void setOffset(int x, int y) {

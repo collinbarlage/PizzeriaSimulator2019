@@ -65,4 +65,11 @@ public class Pizza extends GameObject {
         sprites.removeAllElements();
         sprites.add(new Sprite(App.ASH));
     }
+
+    public boolean hasTopping(Sprite desired) {
+        for (Sprite received : sprites) {
+            if (received.name.equals(desired.name)) return true;
+        }
+        return false;
+    }
 }

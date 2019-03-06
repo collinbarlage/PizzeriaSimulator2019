@@ -24,6 +24,12 @@ public class Oven extends GameObject {
         if (getEmptySlot() >= 0 && game.activeZa.inOven < 0) {
             game.activeZa.inOven = getEmptySlot();
             slots[getEmptySlot()] = game.activeZa;
+
+            System.out.println(game.activeZa.sprites.elementAt(0).name);
+            if(!game.activeZa.sprites.elementAt(0).name.equals(App.DOUGHPIZZA)) {
+                game.activeZa.cookAmount = 1;
+            }
+
             game.activeZa = null;
             game.newPizzaTray();
         }
