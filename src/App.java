@@ -9,7 +9,7 @@ import java.util.Random;
  * CS 338 - WINTER 2019
  */
 
-public class App extends JFrame {
+public class App extends JFrame implements ActionListener {
 
     public static String PIZZA = "PIZZA";
     public static String OVEN = "OVEN";
@@ -40,8 +40,11 @@ public class App extends JFrame {
 
     private GameLoop loop;
     private JPanel gamePanel;
+    private Thread gameTh;
 
     private boolean running = false;
+    private boolean stop = false;
+
 
     private App() {
         this.setJMenuBar(createMenuBar());
@@ -53,8 +56,6 @@ public class App extends JFrame {
 //            }
 //        });
 //        this.add(b);
-        startApp();
-
         setWindowProperties();
     }
 
@@ -62,6 +63,17 @@ public class App extends JFrame {
         InputManager inputManager = new InputManager();
         gamePanel.addMouseListener(inputManager);
         loop = createGameLoop();
+        pack();
+
+    }
+
+    private void setWindowProperties () {
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setTitle("Pizzeria Simulator 2019 - Collin Barlage - CS 338");
+        setResizable(false);
+        setVisible(true);
+        setLocationRelativeTo(null);// Center window
+        pack();
     }
 
     public static void main(String[] args) {
@@ -86,24 +98,14 @@ public class App extends JFrame {
         return loop;
     }
 
-    private void setWindowProperties () {
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setTitle("Pizzeria Simulator 2019 - Collin Barlage - CS 338");
-        setResizable(false);
-        pack();
-        setVisible(true);
-        setLocationRelativeTo(null);// Center window
-    }
-
     private void startGame (GameLoop loop) {
-        Thread th = new Thread(loop);
-        th.start();
+        gameTh = new Thread(loop);
+        gameTh.start();
     }
 
     private class GameLoop extends JPanel implements Runnable {
 
         private Game game;
-        private boolean running = false;
 
         private GameLoop(Game game) {
             this.game = game;
@@ -135,6 +137,10 @@ public class App extends JFrame {
 
             // Game loop
             while (true) {
+                if(stop){
+                    stop = false;
+                    break;
+                }
                 long now = System.nanoTime();
                 elapsedTime += ((now - lastTime) / 1_000_000_000.0) * FPS;
                 lastTime = System.nanoTime();
@@ -208,14 +214,17 @@ public class App extends JFrame {
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_1, ActionEvent.ALT_MASK));
         menu.add(menuItem);
+        menuItem.addActionListener(this);
         menu.addSeparator();
 
         menuItem = new JMenuItem("Save");
         menuItem.setMnemonic(KeyEvent.VK_B);
         menu.add(menuItem);
+
         menuItem = new JMenuItem("Load");
         menuItem.setMnemonic(KeyEvent.VK_B);
         menu.add(menuItem);
+
 
 
         //a submenu
@@ -238,8 +247,17 @@ public class App extends JFrame {
         menuItem = new JMenuItem("Tutorial");
         menuItem.setMnemonic(KeyEvent.VK_B);
         menu.add(menuItem);
+        menuItem.addActionListener(this);
+
 
         return menuBar;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        System.out.println(e.getActionCommand());
+        if(e.getActionCommand().equals("New Game")) {
+            startApp();
+        }
     }
 
 }
