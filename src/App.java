@@ -41,8 +41,9 @@ public class App extends JFrame implements ActionListener {
     private GameLoop loop;
     private JPanel gamePanel;
     private Thread gameTh;
+    public Game game;
 
-    private boolean running = false;
+    private boolean running = true;
     private boolean stop = false;
 
 
@@ -105,10 +106,8 @@ public class App extends JFrame implements ActionListener {
 
     private class GameLoop extends JPanel implements Runnable {
 
-        private Game game;
-
-        private GameLoop(Game game) {
-            this.game = game;
+        private GameLoop(Game g) {
+            game = g;
             gamePanel.setOpaque(false);
             this.add(gamePanel);
 
@@ -139,6 +138,12 @@ public class App extends JFrame implements ActionListener {
             while (true) {
                 if(stop){
                     stop = false;
+                    //restart game
+                    System.out.println("Repeat!");
+                    game.clearGame();
+                    gameTh.interrupt();
+                    startApp();
+                    startGame(loop);
                     break;
                 }
                 long now = System.nanoTime();
@@ -170,10 +175,6 @@ public class App extends JFrame implements ActionListener {
     // Input Manager
     private class InputManager implements MouseListener {
         public void mousePressed(MouseEvent event) {
-            if(!running) {
-                running = true;
-                startGame(loop);
-            }
             System.out.println("mousePressed at: "+ event.getX() + ", "+ event.getY());
             loop.click(event.getX(), event.getY());
 
@@ -255,8 +256,16 @@ public class App extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         System.out.println(e.getActionCommand());
-        if(e.getActionCommand().equals("New Game")) {
+        if(e.getActionCommand().equals("New Game")) menuNewGame();
+
+    }
+
+    private void menuNewGame() {
+        if(game != null) {
+            stop = true;
+        } else {
             startApp();
+            startGame(loop);
         }
     }
 

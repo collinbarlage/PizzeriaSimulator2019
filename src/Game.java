@@ -4,14 +4,15 @@ import java.util.Vector;
 
 class Game  {
     static Color backgroundColor  = new Color(53, 53, 53);
+    private boolean selfDestruct = false;
 
     private GameObject objectToAdd;
     private Vector<GameObject> gameObjects = new Vector<>();
     private Vector<GameObject> gameObjectsBackground = new Vector<>();
     private Vector<GameObject> gameObjectsMidground = new Vector<>();
 
-    private double score = 0;
-    private int time = 0;
+    private double score;
+    private int time;
     private int timeLimit = 60*2;
 
     public Customer[] customers = new Customer[4];
@@ -25,12 +26,14 @@ class Game  {
 
     Game () {
         shuffleCustomers();
-        gameObjectsBackground.add(new GameImage(App.TITLE));
         oven = new Oven();
         update();
     }
 
     public void start() {
+        time = 0;
+        score = 0;
+
         gameObjects.clear();
 
         gameObjectsBackground.add(new GameImage(App.BACKGROUND));
@@ -100,6 +103,10 @@ class Game  {
 
     }
 
+    public void clearGame() {
+        selfDestruct = true;
+    }
+
     public void removePizza(int index) {
         oven.removePizza(index);
     }
@@ -132,6 +139,15 @@ class Game  {
         if(objectToAdd != null) {
             gameObjectsMidground.add(objectToAdd);
             objectToAdd = null;
+        }
+
+        if(selfDestruct) {
+            gameObjectsMidground.clear();
+            gameObjects.clear();
+            gameObjectsBackground.clear();
+            selfDestruct = false;
+
+            return;
         }
 
         for (GameObject obj : gameObjectsBackground)
