@@ -7,8 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e632c9d-f812-4a31-a536-e82480be0795" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Owner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Owner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Pizza.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Pizza.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,19 +21,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-7">
-              <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
+            <state relative-caret-position="3509">
+              <caret line="227" column="26" selection-start-line="227" selection-start-column="26" selection-end-line="227" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2356#2357#0" expanded="true" />
                 <element signature="e#2415#2416#0" expanded="true" />
                 <element signature="e#3144#3145#0" expanded="true" />
                 <element signature="e#3183#3184#0" expanded="true" />
-                <element signature="e#4994#4995#0" expanded="true" />
-                <element signature="e#5056#5057#0" expanded="true" />
+                <element signature="e#4968#4969#0" expanded="true" />
+                <element signature="e#5034#5035#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Pizza.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="51" column="25" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
+            <state relative-caret-position="189">
+              <caret line="61" selection-start-line="61" selection-start-column="2" selection-end-line="67" selection-end-column="25" />
               <folding>
                 <element signature="e#1227#1228#0" expanded="true" />
                 <element signature="e#1286#1287#0" expanded="true" />
@@ -84,7 +86,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Oven.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="214">
               <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
             </state>
           </provider>
@@ -93,8 +95,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GameObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="30" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="255">
+              <caret line="49" selection-start-line="49" selection-end-line="51" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -174,13 +176,13 @@
         <option value="$PROJECT_DIR$/src/App.form" />
         <option value="$PROJECT_DIR$/src/Ingredient.java" />
         <option value="$PROJECT_DIR$/src/GameImage.java" />
-        <option value="$PROJECT_DIR$/src/GameObject.java" />
-        <option value="$PROJECT_DIR$/src/Pizza.java" />
         <option value="$PROJECT_DIR$/src/Oven.java" />
         <option value="$PROJECT_DIR$/src/Sprite.java" />
         <option value="$PROJECT_DIR$/src/Customer.java" />
         <option value="$PROJECT_DIR$/src/Game.java" />
         <option value="$PROJECT_DIR$/src/App.java" />
+        <option value="$PROJECT_DIR$/src/GameObject.java" />
+        <option value="$PROJECT_DIR$/src/Pizza.java" />
       </list>
     </option>
   </component>
@@ -276,8 +278,8 @@
       <window_info id="UI Designer" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" x="-533" y="-208" width="1902" height="173" id="Run" order="2" type="FLOATING" visible="true" weight="0.25040916" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
+      <window_info anchor="bottom" x="-533" y="-208" width="1902" height="173" id="Run" order="2" type="FLOATING" visible="true" weight="0.25040916" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -411,34 +413,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pizza.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="51" column="25" selection-start-line="51" selection-start-column="25" selection-end-line="51" selection-end-column="25" />
-          <folding>
-            <element signature="e#1227#1228#0" expanded="true" />
-            <element signature="e#1286#1287#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Oven.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="30" selection-start-line="30" selection-end-line="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Ingredient.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -495,16 +469,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
+        <state relative-caret-position="3509">
+          <caret line="227" column="26" selection-start-line="227" selection-start-column="26" selection-end-line="227" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2356#2357#0" expanded="true" />
             <element signature="e#2415#2416#0" expanded="true" />
             <element signature="e#3144#3145#0" expanded="true" />
             <element signature="e#3183#3184#0" expanded="true" />
-            <element signature="e#4994#4995#0" expanded="true" />
-            <element signature="e#5056#5057#0" expanded="true" />
+            <element signature="e#4968#4969#0" expanded="true" />
+            <element signature="e#5034#5035#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="49" selection-start-line="49" selection-end-line="51" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Oven.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Pizza.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="61" selection-start-line="61" selection-start-column="2" selection-end-line="67" selection-end-column="25" />
+          <folding>
+            <element signature="e#1227#1228#0" expanded="true" />
+            <element signature="e#1286#1287#0" expanded="true" />
           </folding>
         </state>
       </provider>

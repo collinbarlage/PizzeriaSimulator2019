@@ -9,6 +9,8 @@ abstract class GameObject {
     public boolean hide;
     public String name;
 
+    private String suffex;
+
     protected Vector<Sprite> sprites;
 
     public GameObject () {

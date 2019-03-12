@@ -14,13 +14,11 @@ public class App extends JFrame implements ActionListener {
 
     public Game game;
     private GameLoop loop;
-    private JFrame tutMenu;
     private JPanel mainMenu;
     private JPanel gamePanel;
     private Thread gameThread;
 
     private boolean running = true;
-    private boolean paused = false;
     private boolean stop = false;
 
     public static String PIZZA = "PIZZA";
@@ -129,27 +127,25 @@ public class App extends JFrame implements ActionListener {
 
             // Game loop
             while (true) {
-                if (!paused) {
-                    if (stop) {
-                        stop = false;
-                        //restart game
-                        System.out.println("Repeat!");
-                        game.clearGame();
-                        gameThread.interrupt();
-                        startApp();
-                        startGame(loop);
-                        break;
-                    }
-                    long now = System.nanoTime();
-                    elapsedTime += ((now - lastTime) / 1_000_000_000.0) * FPS;
-                    lastTime = System.nanoTime();
-                    if (elapsedTime >= 1) {
-                        game.update();
-                        elapsedTime--;
-                    }
-                    sleep();
-                    repaint();
+                if (stop) {
+                    stop = false;
+                    //restart game
+                    System.out.println("Repeat!");
+                    game.clearGame();
+                    gameThread.interrupt();
+                    startApp();
+                    startGame(loop);
+                    break;
                 }
+                long now = System.nanoTime();
+                elapsedTime += ((now - lastTime) / 1_000_000_000.0) * FPS;
+                lastTime = System.nanoTime();
+                if (elapsedTime >= 1) {
+                    game.update();
+                    elapsedTime--;
+                }
+                sleep();
+                repaint();
             }
         }
     }
@@ -170,17 +166,13 @@ public class App extends JFrame implements ActionListener {
     // Input Manager
     private class InputManager implements MouseListener {
         public void mousePressed(MouseEvent event) {
-            if(!paused) {
-                System.out.println("mousePressed at: "+ event.getX() + ", "+ event.getY());
-                loop.click(event.getX(), event.getY());
-            }
+            System.out.println("mousePressed at: "+ event.getX() + ", "+ event.getY());
+            loop.click(event.getX(), event.getY());
 
         }
 
         public void mouseReleased(MouseEvent event) {
-            if(!paused) {
-                loop.click(event.getX(), event.getY());
-            }
+            loop.click(event.getX(), event.getY());
         }
 
         public void mouseClicked(MouseEvent event) {
@@ -210,23 +202,20 @@ public class App extends JFrame implements ActionListener {
 
         //a group of JMenuItems
         menuItem = new JMenuItem("New Game",
-                KeyEvent.VK_T);
+                KeyEvent.VK_N);
         menuItem.setAccelerator(KeyStroke.getKeyStroke(
-                KeyEvent.VK_1, ActionEvent.ALT_MASK));
+                KeyEvent.VK_N, ActionEvent.CTRL_MASK));
         menu.add(menuItem);
         menuItem.addActionListener(this);
         menu.addSeparator();
 
         menuItem = new JMenuItem("Save");
-        menuItem.setMnemonic(KeyEvent.VK_B);
         menu.add(menuItem);
 
         menuItem = new JMenuItem("Load");
-        menuItem.setMnemonic(KeyEvent.VK_B);
         menu.add(menuItem);
 
         menuItem = new JMenuItem("Exit");
-        menuItem.setMnemonic(KeyEvent.VK_B);
         menu.add(menuItem);
         menuItem.addActionListener(this);
 
@@ -234,7 +223,6 @@ public class App extends JFrame implements ActionListener {
         //a submenu
         menu.addSeparator();
         submenu = new JMenu("Preferences");
-        submenu.setMnemonic(KeyEvent.VK_S);
 
         menuItem = new JMenuItem("Graphics");
         submenu.add(menuItem);
@@ -253,6 +241,10 @@ public class App extends JFrame implements ActionListener {
         menu.add(menuItem);
         menuItem.addActionListener(this);
 
+        menuItem = new JMenuItem("About");
+        menu.add(menuItem);
+        menuItem.addActionListener(this);
+
 
         return menuBar;
     }
@@ -265,6 +257,7 @@ public class App extends JFrame implements ActionListener {
         if(event.equals("New Game") || event.equals("Start Game")) menuNewGame();
         if(event.equals("Quit") || event.equals("Exit")) System.exit(1);
         if(event.equals("Tutorial") || event.equals("How To Play")) menuTutorial();
+        if(event.equals("About")) menuAbout();
 
     }
 
@@ -299,15 +292,34 @@ public class App extends JFrame implements ActionListener {
         b.addActionListener(this);
         buttons.add(b);
 
+        JLabel l = new JLabel(" \n\n\n\n\n\n\n\n\nCollin Barlage - CS 338");
+
         mainMenu.add(buttons);
+        mainMenu.add(l);
 
         this.add(mainMenu);
     }
 
     private void menuTutorial() {
         JOptionPane.showConfirmDialog(this,
-                "Eggs are not supposed to be green.",
-                "A plain message",
+                "Pizzeria Simulator 2019: Tutorial\n"+
+                        "Cook and distribute pizzas as fast as possible.\n\n"+
+                        "To do this, click the ingredients on the bottom of your screen.\n"+
+                        "Then, wait for the pizza to cook in the oven.\n"+
+                        "When the pizza is done, select it, then select the customer that wants the pizza\n\n"+
+                        "If the pizza is burnt, or the toppings are not correct, you will not get full payment for your pizza\n\n\n",
+
+                "Tutorial",
+                JOptionPane.PLAIN_MESSAGE);
+    }
+
+    private void menuAbout() {
+        JOptionPane.showConfirmDialog(this,
+                        "Collin Barlage: Concept, Development\n"+
+                        "Brianna Maule: Art\n\n"+
+                        "CS 338 Winter 2019\n\n\n",
+
+                "Pizzeria Simulator 2019 - About",
                 JOptionPane.PLAIN_MESSAGE);
     }
 

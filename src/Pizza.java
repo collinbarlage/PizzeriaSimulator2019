@@ -1,12 +1,15 @@
+import java.util.Vector;
 
 public class Pizza extends GameObject {
 
     public int inOven = -1;
     public double cookAmount = 0;
-    boolean isSold;
+    public boolean isSold;
+    private String suffix;
 
     public Pizza(int i, int j) {
         isSold = false;
+        suffix = "";
         name = App.PIZZA;
         init(i , j , 130, 75);
     }
@@ -50,14 +53,23 @@ public class Pizza extends GameObject {
     public void cook(double amount) {
         cookAmount += amount;
         if(cookAmount > 1) decimatePizza();
-        else if(cookAmount > .6) changeCrust(App.BURNTPIZZA);
-        else if(cookAmount > .3) changeCrust(App.COOKEDPIZZA);
+        else if(cookAmount > .6) cookSprites(App.BURNTPIZZA);
+        else if(cookAmount > .3) cookSprites(App.COOKEDPIZZA);
     }
 
-    private void changeCrust(String crust) {
-        if(sprites.elementAt(0).name.equals(crust)) return;
+    private void cookSprites(String level) {
+        //TODO
+//        if(level.equals(suffix)) return;
+//        Vector<Sprite> newSprites = new Vector<>();
+//        for(Sprite s: sprites) {
+//            newSprites.add(new Sprite(s.name.replace(".png", suffix+".png")));
+//        }
+//        sprites = newSprites;
+//        suffix = level;
+
+        if(sprites.elementAt(0).name.equals(level)) return;
         sprites.removeElementAt(0);
-        sprites.add(0, new Sprite(crust));
+        sprites.add(0, new Sprite(level));
     }
 
     private void decimatePizza() {
