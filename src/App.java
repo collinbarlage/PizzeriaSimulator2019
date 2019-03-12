@@ -23,6 +23,8 @@ public class App extends JFrame implements ActionListener {
 
     public static String PIZZA = "PIZZA";
     public static String OVEN = "OVEN";
+    public static String COOKEDPIZZA = "./images/doughpizza_cooked.png";
+    public static String BURNTPIZZA = "./images/doughpizza_burnt.png";
 
     public static String TITLE = "./images/title.png";
     public static String BACKGROUND = "./images/pizzeria.png";
@@ -38,8 +40,7 @@ public class App extends JFrame implements ActionListener {
     public static String PEPPER = "./images/pepper.png";
 
     public static String DOUGHPIZZA = "./images/doughpizza.png";
-    public static String COOKEDPIZZA = "./images/cookedpizza.png";
-    public static String BURNTPIZZA = "./images/burntpizza.png";
+
     public static String ASH = "./images/ash.png";
 
     public static String SAUCEPIZZA = "./images/saucepizza.png";
@@ -101,9 +102,6 @@ public class App extends JFrame implements ActionListener {
             game = g;
             gamePanel.setOpaque(false);
             this.add(gamePanel);
-
-
-
         }
 
         private void click(int x, int y) {

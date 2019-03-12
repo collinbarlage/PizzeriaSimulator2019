@@ -13,11 +13,11 @@ class Game  {
 
     private double score;
     private int time;
-    private int timeLimit = 60*2;
+    private int timeLimit = 2*60;
 
     public Customer[] customers = new Customer[4];
     public Vector<String> lineUp = new Vector<>();
-    private int numCustomers = 8; //TODO: More peeps
+    private int numCustomers = 9; //TODO: More peeps
 
     public Pizza activeZa;
 
@@ -98,9 +98,7 @@ class Game  {
     }
 
     private void endGame() {
-
-        addGameObject(new GameImage(App.TITLE)); //TODO: change to end game
-
+        clearGame();
     }
 
     public void clearGame() {
@@ -136,18 +134,16 @@ class Game  {
     }
 
     private void paintObjects (Graphics2D g) {
-        if(objectToAdd != null) {
-            gameObjectsMidground.add(objectToAdd);
-            objectToAdd = null;
-        }
-
         if(selfDestruct) {
             gameObjectsMidground.clear();
             gameObjects.clear();
             gameObjectsBackground.clear();
-            selfDestruct = false;
-
             return;
+        }
+
+        if(objectToAdd != null) {
+            gameObjectsMidground.add(objectToAdd);
+            objectToAdd = null;
         }
 
         for (GameObject obj : gameObjectsBackground)

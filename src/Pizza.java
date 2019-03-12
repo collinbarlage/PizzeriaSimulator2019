@@ -5,11 +5,14 @@ public class Pizza extends GameObject {
     public int inOven = -1;
     public double cookAmount = 0;
     public boolean isSold;
+    public boolean isCooked;
     private String suffix;
+    private String oldSuffix;
 
     public Pizza(int i, int j) {
+        isCooked = false;
         isSold = false;
-        suffix = "";
+        suffix = oldSuffix = "";
         name = App.PIZZA;
         init(i , j , 130, 75);
     }
@@ -23,27 +26,32 @@ public class Pizza extends GameObject {
     }
 
     public void autoGenerate() {
-        this.addTopping(App.COOKEDPIZZA);
+        this.addTopping(cookString(App.DOUGHPIZZA));
 
         int r = App.getRandomInt(1,4);
         if(r == 1) {
-            this.addTopping(App.CHEESEPIZZA);
+            this.addTopping(cookString(App.CHEESEPIZZA));
         } else if(r == 2) {
-            this.addTopping((App.SAUCEPIZZA));
+            this.addTopping((cookString(App.SAUCEPIZZA)));
         } else {
-            this.addTopping((App.SAUCEPIZZA));
-            this.addTopping((App.CHEESEPIZZA));
+            this.addTopping((cookString(App.SAUCEPIZZA)));
+            this.addTopping((cookString(App.CHEESEPIZZA)));
         }
 
         r = App.getRandomInt(1,4);
         if(r == 1) {
-            this.addTopping(App.PEPPERPIZZA);
+            this.addTopping(cookString(App.PEPPERPIZZA));
         } else if(r == 2) {
-            this.addTopping((App.SHROOMPIZZA));
+            this.addTopping((cookString(App.SHROOMPIZZA)));
         } else if (r == 3) {
-            this.addTopping(App.PEPPERPIZZA);
-            this.addTopping(App.SHROOMPIZZA);
+            this.addTopping(cookString(App.PEPPERPIZZA));
+            this.addTopping(cookString(App.SHROOMPIZZA));
         }
+
+    }
+
+    public String cookString(String s) {
+        return s.replace(".png", "_cooked.png");
     }
 
     public void action(Game game) {
@@ -53,23 +61,23 @@ public class Pizza extends GameObject {
     public void cook(double amount) {
         cookAmount += amount;
         if(cookAmount > 1) decimatePizza();
-        else if(cookAmount > .6) cookSprites(App.BURNTPIZZA);
-        else if(cookAmount > .3) cookSprites(App.COOKEDPIZZA);
+        else if(cookAmount > .6) cookSprites("_burnt");
+        else if(cookAmount > .3) cookSprites("_cooked");
     }
 
     private void cookSprites(String level) {
-        //TODO
-//        if(level.equals(suffix)) return;
-//        Vector<Sprite> newSprites = new Vector<>();
-//        for(Sprite s: sprites) {
-//            newSprites.add(new Sprite(s.name.replace(".png", suffix+".png")));
-//        }
-//        sprites = newSprites;
-//        suffix = level;
-
-        if(sprites.elementAt(0).name.equals(level)) return;
-        sprites.removeElementAt(0);
-        sprites.add(0, new Sprite(level));
+        if(level.equals(suffix)) return;
+        Vector<Sprite> newSprites = new Vector<>();
+        suffix = level;
+        System.out.println("lvvl:"+suffix);
+        for(Sprite s: sprites) {
+            newSprites.add(new Sprite(s.name.replace(oldSuffix+".png", suffix+".png")));
+        }
+        sprites.clear();
+        for(Sprite s: newSprites) {
+            sprites.add(s);
+        }
+        oldSuffix = suffix;
     }
 
     private void decimatePizza() {
@@ -81,6 +89,7 @@ public class Pizza extends GameObject {
     public boolean hasTopping(Sprite desired) {
         for (Sprite received : sprites) {
             if (received.name.equals(desired.name)) return true;
+            if (received.name.replace("_burnt","_cooked").equals(desired.name)) return true;
         }
         return false;
     }

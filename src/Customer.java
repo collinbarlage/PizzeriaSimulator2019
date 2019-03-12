@@ -45,15 +45,27 @@ public class Customer extends GameObject {
     private double getBaseCost(String item) {
         if(item.equals(App.COOKEDPIZZA)) {
             return 3.0;
-        } else if(item.equals(App.BURNTPIZZA)) {
+        } else if(item.equals(cooked(App.BURNTPIZZA))) {
             return 1.5;
-        } else if(item.equals(App.CHEESEPIZZA) || item.equals(App.SAUCEPIZZA)) {
+        } else if(item.equals(cooked(App.CHEESEPIZZA)) || item.equals(cooked(App.SAUCEPIZZA))) {
             return 1.75;
-        } else if(item.equals(App.SHROOMPIZZA) || item.equals(App.PEPPERPIZZA)) {
+        } else if(item.equals(cooked(App.SHROOMPIZZA)) || item.equals(cooked(App.PEPPERPIZZA))) {
             return 1.0;
+        } else if(item.equals(burnt(App.CHEESEPIZZA)) || item.equals(burnt(App.SAUCEPIZZA))) {
+            return .35;
+        } else if(item.equals(burnt(App.SHROOMPIZZA)) || item.equals(burnt(App.PEPPERPIZZA))) {
+            return .15;
         } else {
             return .1;
         }
+    }
+
+    public String cooked(String s) {
+        return s.replace(".png", "_cooked.png");
+    }
+
+    public String burnt(String s) {
+        return s.replace(".png", "_burnt.png");
     }
 
     public void draw(Graphics g) {
