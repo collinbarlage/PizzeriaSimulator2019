@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
@@ -10,6 +11,17 @@ import java.util.Random;
  */
 
 public class App extends JFrame implements ActionListener {
+
+    public Game game;
+    private GameLoop loop;
+    private JFrame tutMenu;
+    private JPanel mainMenu;
+    private JPanel gamePanel;
+    private Thread gameThread;
+
+    private boolean running = true;
+    private boolean paused = false;
+    private boolean stop = false;
 
     public static String PIZZA = "PIZZA";
     public static String OVEN = "OVEN";
@@ -38,25 +50,9 @@ public class App extends JFrame implements ActionListener {
     public static String PEPPERPIZZA = "./images/pepperpizza.png";
 
 
-    private GameLoop loop;
-    private JPanel gamePanel;
-    private Thread gameTh;
-    public Game game;
-
-    private boolean running = true;
-    private boolean stop = false;
-
-
     private App() {
         this.setJMenuBar(createMenuBar());
-//        JButton b = new JButton("START GAME"); TODO: figure this out
-//        b.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                startApp();
-//            }
-//        });
-//        this.add(b);
+        showMainMenu();
         setWindowProperties();
     }
 
@@ -91,17 +87,14 @@ public class App extends JFrame implements ActionListener {
         int canvasHeight = 685;
         loop.setPreferredSize(new Dimension(canvasWidth, canvasHeight));
 
-        JButton b = new JButton("START GAME");
-        this.add(b);
-
         cp.add(loop);
 
         return loop;
     }
 
     private void startGame (GameLoop loop) {
-        gameTh = new Thread(loop);
-        gameTh.start();
+        gameThread = new Thread(loop);
+        gameThread.start();
     }
 
     private class GameLoop extends JPanel implements Runnable {
@@ -136,25 +129,27 @@ public class App extends JFrame implements ActionListener {
 
             // Game loop
             while (true) {
-                if(stop){
-                    stop = false;
-                    //restart game
-                    System.out.println("Repeat!");
-                    game.clearGame();
-                    gameTh.interrupt();
-                    startApp();
-                    startGame(loop);
-                    break;
+                if (!paused) {
+                    if (stop) {
+                        stop = false;
+                        //restart game
+                        System.out.println("Repeat!");
+                        game.clearGame();
+                        gameThread.interrupt();
+                        startApp();
+                        startGame(loop);
+                        break;
+                    }
+                    long now = System.nanoTime();
+                    elapsedTime += ((now - lastTime) / 1_000_000_000.0) * FPS;
+                    lastTime = System.nanoTime();
+                    if (elapsedTime >= 1) {
+                        game.update();
+                        elapsedTime--;
+                    }
+                    sleep();
+                    repaint();
                 }
-                long now = System.nanoTime();
-                elapsedTime += ((now - lastTime) / 1_000_000_000.0) * FPS;
-                lastTime = System.nanoTime();
-                if (elapsedTime >= 1) {
-                    game.update();
-                    elapsedTime--;
-                }
-                sleep();
-                repaint();
             }
         }
     }
@@ -175,13 +170,17 @@ public class App extends JFrame implements ActionListener {
     // Input Manager
     private class InputManager implements MouseListener {
         public void mousePressed(MouseEvent event) {
-            System.out.println("mousePressed at: "+ event.getX() + ", "+ event.getY());
-            loop.click(event.getX(), event.getY());
+            if(!paused) {
+                System.out.println("mousePressed at: "+ event.getX() + ", "+ event.getY());
+                loop.click(event.getX(), event.getY());
+            }
 
         }
 
         public void mouseReleased(MouseEvent event) {
-            loop.click(event.getX(), event.getY());
+            if(!paused) {
+                loop.click(event.getX(), event.getY());
+            }
         }
 
         public void mouseClicked(MouseEvent event) {
@@ -226,6 +225,10 @@ public class App extends JFrame implements ActionListener {
         menuItem.setMnemonic(KeyEvent.VK_B);
         menu.add(menuItem);
 
+        menuItem = new JMenuItem("Exit");
+        menuItem.setMnemonic(KeyEvent.VK_B);
+        menu.add(menuItem);
+        menuItem.addActionListener(this);
 
 
         //a submenu
@@ -254,9 +257,14 @@ public class App extends JFrame implements ActionListener {
         return menuBar;
     }
 
+    //main menu event system
     public void actionPerformed(ActionEvent e) {
-        System.out.println(e.getActionCommand());
-        if(e.getActionCommand().equals("New Game")) menuNewGame();
+        String event = e.getActionCommand();
+        System.out.println(event);
+
+        if(event.equals("New Game") || event.equals("Start Game")) menuNewGame();
+        if(event.equals("Quit") || event.equals("Exit")) System.exit(1);
+        if(event.equals("Tutorial") || event.equals("How To Play")) menuTutorial();
 
     }
 
@@ -264,9 +272,43 @@ public class App extends JFrame implements ActionListener {
         if(game != null) {
             stop = true;
         } else {
+            //first run
             startApp();
             startGame(loop);
+            this.remove(mainMenu);
         }
+    }
+
+    //Main menu
+    private void showMainMenu() {
+        mainMenu = new JPanel();
+        mainMenu.setPreferredSize(new Dimension(1210, 685));
+
+        //buttons
+        JPanel buttons = new JPanel();
+        buttons.setBorder(new EmptyBorder(10,10,10,10));
+        JButton b = new JButton("Start Game");
+        b.addActionListener(this);
+        buttons.add(b);
+
+        b = new JButton("How To Play");
+        b.addActionListener(this);
+        buttons.add(b);
+
+        b = new JButton("Quit");
+        b.addActionListener(this);
+        buttons.add(b);
+
+        mainMenu.add(buttons);
+
+        this.add(mainMenu);
+    }
+
+    private void menuTutorial() {
+        JOptionPane.showConfirmDialog(this,
+                "Eggs are not supposed to be green.",
+                "A plain message",
+                JOptionPane.PLAIN_MESSAGE);
     }
 
 }
