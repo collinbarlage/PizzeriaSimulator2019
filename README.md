@@ -1,20 +1,22 @@
-# 🍕 PizzeriaSimulator2019 🍕
+# 🍕 Pizzeria Simulator 2019 🍕
 
 Collin Barlage
 
 Java Swing
+
 CS 338 - Winter 2019
 
 ## Art
 
 *Customers, and pizzeria shop art assets were done by [Brianna Maule](https://www.instagram.com/briannamauleartist/)*
+
 Pizza art was done by Collin Barlage.
 
 ## Compilation Basics
 
 The `main()` method can be found the in the `App` class, in which it invokes a new Appp using `java.lang`'s Runnable class.
 
-However, a jar file `PizzeriaSimulator2019.jar` has been included for your convenience.
+However, a jar file `cjb356_collin_barlage_PizzeriaSimulator2019.jar` has been included for your convenience.
 
 ## Modules
 
