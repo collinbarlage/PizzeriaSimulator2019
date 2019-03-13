@@ -14,6 +14,8 @@ Pizza art was done by Collin Barlage.
 
 ## Compilation Basics
 
+*NOTE: the directory `/images/` must be present with the .jar file and src folder to correctly run*
+
 The `main()` method can be found the in the `App` class, in which it invokes a new Appp using `java.lang`'s Runnable class.
 
 However, a jar file `cjb356_collin_barlage_PizzeriaSimulator2019.jar` has been included for your convenience.
