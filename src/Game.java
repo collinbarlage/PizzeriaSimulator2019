@@ -13,7 +13,7 @@ class Game  {
 
     private double score;
     private int time;
-    private int timeLimit = 2*6;
+    private int timeLimit = 2*60;
     public boolean gameOver = false;
 
     public Customer[] customers = new Customer[4];
