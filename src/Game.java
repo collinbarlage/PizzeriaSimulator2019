@@ -18,7 +18,7 @@ class Game  {
 
     public Customer[] customers = new Customer[4];
     public Vector<String> lineUp = new Vector<>();
-    private int numCustomers = 9; //TODO: More peeps
+    private int numCustomers = 10; //TODO: More peeps
 
     public Pizza activeZa;
 
