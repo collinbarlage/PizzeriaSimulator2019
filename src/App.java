@@ -1,7 +1,10 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
 /**
@@ -59,6 +62,12 @@ public class App extends JFrame implements ActionListener {
     }
 
     private void startApp() {
+        //check for ./images
+        try {
+            ImageIO.read(new File(DOUGH));
+        } catch (IOException e) {
+            showError();
+        }
         InputManager inputManager = new InputManager();
         gamePanel.addMouseListener(inputManager);
         loop = createGameLoop();
@@ -335,6 +344,21 @@ public class App extends JFrame implements ActionListener {
         }
         if(response == 1) {
             System.exit(1);
+        }
+    }
+
+    private void showError() {
+        String[] options = {"Abort"};
+        int messageType = JOptionPane.ERROR_MESSAGE;
+        int response = JOptionPane.showInternalOptionDialog(
+                this.getContentPane(),
+                "ERROR: You don't appear to have the directory './images' with your jar file",
+                "YIKES", 0, messageType,
+                null, options, "Abort");
+        System.out.println(response);
+        if(response == 0) {
+            System.exit(1);
+
         }
     }
 
