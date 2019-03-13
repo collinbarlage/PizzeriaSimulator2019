@@ -48,6 +48,10 @@ public class App extends JFrame implements ActionListener {
     public static String PEPPERPIZZA = "./images/pepperpizza.png";
 
 
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new App());
+    }
+
     private App() {
         this.setJMenuBar(createMenuBar());
         showMainMenu();
@@ -69,10 +73,6 @@ public class App extends JFrame implements ActionListener {
         setVisible(true);
         setLocationRelativeTo(null);// Center window
         pack();
-    }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new App());
     }
 
     private GameLoop createGameLoop () {
