@@ -18,7 +18,6 @@ public class App extends JFrame implements ActionListener {
     private JPanel gamePanel;
     private Thread gameThread;
 
-    private boolean running = true;
     private boolean stop = false;
 
     public static String PIZZA = "PIZZA";
@@ -125,6 +124,7 @@ public class App extends JFrame implements ActionListener {
 
             // Game loop
             while (true) {
+                if(game.gameOver) showEndGame(game.getScore());
                 if (stop) {
                     stop = false;
                     //restart game
@@ -319,6 +319,23 @@ public class App extends JFrame implements ActionListener {
 
                 "Pizzeria Simulator 2019 - About",
                 JOptionPane.PLAIN_MESSAGE);
+    }
+
+    private void showEndGame(String score) {
+        String[] options = {"Play Again!", "Quit"};
+        int messageType = JOptionPane.NO_OPTION;
+        int response = JOptionPane.showInternalOptionDialog(
+                this.getContentPane(),
+                "Highscore: $"+score,
+                "GAME OVER", 0, messageType,
+                null, options, "Play Again!");
+        System.out.println(response);
+        if(response == 0) {
+            menuNewGame();
+        }
+        if(response == 1) {
+            System.exit(1);
+        }
     }
 
 }

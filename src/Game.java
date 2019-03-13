@@ -13,7 +13,8 @@ class Game  {
 
     private double score;
     private int time;
-    private int timeLimit = 2*60;
+    private int timeLimit = 2*6;
+    public boolean gameOver = false;
 
     public Customer[] customers = new Customer[4];
     public Vector<String> lineUp = new Vector<>();
@@ -33,8 +34,6 @@ class Game  {
     public void start() {
         time = 0;
         score = 0;
-
-        gameObjects.clear();
 
         gameObjectsBackground.add(new GameImage(App.BACKGROUND));
         addGameObject(new GameImage(App.FOREGROUND));
@@ -99,6 +98,7 @@ class Game  {
 
     private void endGame() {
         clearGame();
+        gameOver = true;
     }
 
     public void clearGame() {
@@ -160,7 +160,7 @@ class Game  {
         g.drawString("Time Until Close: " + getTime(), 5, 25);
         g.setColor(Color.GREEN);
         DecimalFormat df = new DecimalFormat("#.00");
-        g.drawString("$" + String.format("%.02f", score), 1120, 25);
+        g.drawString("$" + getScore(), 1120, 25);
     }
 
     public void queueGameObject(GameObject obj) {
@@ -186,6 +186,10 @@ class Game  {
             min++;
         }
         return timeDigit(min)+":"+timeDigit(sec);
+    }
+
+    public String getScore() {
+        return String.format("%.02f", score);
     }
 
     private String timeDigit(int i) {
